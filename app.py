@@ -3,64 +3,176 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# ---------------- PAGE CONFIGURATION ----------------
+# ==========================================
+# PAGE CONFIGURATION
+# ==========================================
 
 st.set_page_config(
-    page_title="Fake Job Detection",
+    page_title="Fake Job Detection | AI",
     page_icon="🔍",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# ---------------- CUSTOM CSS ----------------
+# ==========================================
+# CUSTOM AI GRADIENT THEME
+# ==========================================
 
 st.markdown("""
 <style>
+
 .stApp {
-    background-color: #F4F7FB;
+    background: linear-gradient(
+        135deg,
+        #100B2B 0%,
+        #191044 45%,
+        #101C42 100%
+    );
+    color: #FFFFFF;
+}
+
+header[data-testid="stHeader"] {
+    background: transparent;
+}
+
+section[data-testid="stSidebar"] {
+    background: linear-gradient(
+        180deg,
+        #1D1450,
+        #111936
+    );
+    border-right: 1px solid #493C85;
+}
+
+section[data-testid="stSidebar"] * {
+    color: #FFFFFF;
 }
 
 .main-title {
-    font-size: 38px;
+    font-size: 43px;
     font-weight: 800;
-    color: #17365D;
+    background: linear-gradient(
+        90deg,
+        #C084FC,
+        #818CF8,
+        #38BDF8
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-    font-size: 16px;
-    color: #64748B;
-}
-
-.metric-card {
-    background-color: white;
-    padding: 22px;
-    border-radius: 12px;
-    border: 1px solid #E2E8F0;
-    text-align: center;
+    color: #C4B5FD;
+    font-size: 17px;
 }
 
 .section-title {
-    color: #17365D;
-    font-size: 23px;
+    color: #C4B5FD;
+    font-size: 25px;
     font-weight: 700;
 }
 
-div.stButton > button {
-    background-color: #17365D;
+.metric-card {
+    background: linear-gradient(
+        135deg,
+        #29205B,
+        #1B2855
+    );
+    border: 1px solid #6652B8;
+    border-radius: 16px;
+    padding: 23px;
+    text-align: center;
+    min-height: 145px;
+}
+
+.metric-card h2 {
+    color: #C4B5FD;
+    font-size: 30px;
+}
+
+.metric-card p {
+    color: #CBD5E1;
+}
+
+div[data-testid="stForm"] {
+    background: linear-gradient(
+        135deg,
+        #20194D,
+        #18264F
+    );
+    border: 1px solid #6554AE;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.stButton > button,
+.stFormSubmitButton > button {
+    background: linear-gradient(
+        90deg,
+        #9333EA,
+        #4F46E5,
+        #2563EB
+    );
     color: white;
-    border-radius: 8px;
+    border: none;
+    border-radius: 10px;
     height: 48px;
-    font-weight: 600;
+    font-weight: bold;
     width: 100%;
 }
 
-div.stButton > button:hover {
-    background-color: #24558B;
+.stButton > button:hover,
+.stFormSubmitButton > button:hover {
+    border: 1px solid #C084FC;
     color: white;
 }
+
+div[data-baseweb="select"] > div {
+    background-color: #29205B;
+    border-color: #7764C9;
+    color: white;
+}
+
+div[data-baseweb="select"] * {
+    color: white;
+}
+
+label, p, h1, h2, h3 {
+    color: #FFFFFF;
+}
+
+div[data-testid="stMetric"] {
+    background: #241C55;
+    border: 1px solid #6554AE;
+    padding: 17px;
+    border-radius: 13px;
+}
+
+div[data-testid="stMetricLabel"] {
+    color: #C4B5FD;
+}
+
+div[data-testid="stMetricValue"] {
+    color: #FFFFFF;
+}
+
+hr {
+    border-color: #574B91;
+}
+
+.footer {
+    text-align: center;
+    color: #A5B4FC;
+    padding: 25px;
+    font-size: 13px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- LOAD MODEL ----------------
+# ==========================================
+# LOAD TRAINED MODEL
+# ==========================================
 
 @st.cache_resource
 def load_model():
@@ -68,70 +180,104 @@ def load_model():
 
 model = load_model()
 
-# ---------------- SESSION STATE ----------------
+# ==========================================
+# SESSION HISTORY
+# ==========================================
 
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# ---------------- SIDEBAR ----------------
+# ==========================================
+# SIDEBAR
+# ==========================================
 
-st.sidebar.title("🔍 Fake Job Detector")
+st.sidebar.title("🔍 AI Job Detector")
+
+st.sidebar.caption("SMART FRAUD DETECTION SYSTEM")
+
+st.sidebar.divider()
 
 page = st.sidebar.radio(
-    "Navigation",
-    ["Home", "Prediction History", "About Model"]
+    "NAVIGATION",
+    [
+        "🏠 Home",
+        "📊 Prediction History",
+        "🤖 About Model"
+    ]
 )
 
 st.sidebar.divider()
 
 st.sidebar.info(
-    "Machine Learning Based Job Fraud Detection System"
+    "Powered by Machine Learning"
 )
 
-# ---------------- HOME PAGE ----------------
+st.sidebar.caption(
+    "Fake Job Detection | AI Project"
+)
 
-if page == "Home":
+# ==========================================
+# HOME PAGE
+# ==========================================
+
+if page == "🏠 Home":
 
     st.markdown(
-        '<div class="main-title">Fake Job Detection System</div>',
+        '<div class="main-title">AI Fake Job Detection</div>',
         unsafe_allow_html=True
     )
 
     st.markdown(
-        '<div class="subtitle">Identify suspicious job postings using Machine Learning.</div>',
+        '<div class="subtitle">Intelligent job fraud analysis using Machine Learning</div>',
         unsafe_allow_html=True
     )
 
     st.write("")
 
-    # Dashboard cards
+    # DASHBOARD CARDS
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown(
-            '<div class="metric-card"><h3>🤖</h3><b>ML Powered</b><p>Logistic Regression</p></div>',
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+        <div class="metric-card">
+            <h2>🤖</h2>
+            <h3>AI Powered</h3>
+            <p>Logistic Regression</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown(
-            '<div class="metric-card"><h3>🔎</h3><b>Fraud Detection</b><p>Fake or Real Prediction</p></div>',
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+        <div class="metric-card">
+            <h2>🛡️</h2>
+            <h3>Fraud Detection</h3>
+            <p>Fake or Real Analysis</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown(
-            '<div class="metric-card"><h3>📊</h3><b>Probability</b><p>Prediction Confidence</p></div>',
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+        <div class="metric-card">
+            <h2>📈</h2>
+            <h3>Smart Prediction</h3>
+            <p>Probability Analysis</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.write("")
+    st.divider()
+
     st.markdown(
-        '<div class="section-title">Enter Job Information</div>',
+        '<div class="section-title">✨ Analyze Job Posting</div>',
         unsafe_allow_html=True
     )
 
-    st.write("Provide the following details to analyze a job posting.")
+    st.write(
+        "Enter the job details below to check the possibility of job fraud."
+    )
+
+    # INPUT FORM
 
     with st.form("job_form"):
 
@@ -139,24 +285,28 @@ if page == "Home":
 
         with col1:
             telecommuting = st.selectbox(
-                "🏠 Is this a remote job?",
+                "🏠 Remote Job",
                 ["No", "Yes"]
             )
 
         with col2:
             has_company_logo = st.selectbox(
-                "🏢 Does the company have a logo?",
+                "🏢 Company Logo Available",
                 ["No", "Yes"]
             )
 
         has_questions = st.selectbox(
-            "❓ Does the job posting contain screening questions?",
+            "❓ Screening Questions Available",
             ["No", "Yes"]
         )
 
         submitted = st.form_submit_button(
-            "🔍 Analyze Job Posting"
+            "🔍 ANALYZE JOB NOW"
         )
+
+    # ======================================
+    # PREDICTION
+    # ======================================
 
     if submitted:
 
@@ -176,82 +326,118 @@ if page == "Home":
 
         probabilities = model.predict_proba(new_job)[0]
 
+        classes = list(model.classes_)
+
         fake_probability = probabilities[
-            list(model.classes_).index(0)
+            classes.index(0)
         ]
 
         real_probability = probabilities[
-            list(model.classes_).index(1)
+            classes.index(1)
         ]
 
-        result = "Fake" if predicted_class == 0 else "Real"
+        result = (
+            "Fake" if predicted_class == 0
+            else "Real"
+        )
+
+        # SAVE HISTORY
 
         st.session_state.history.append({
             "Prediction": result,
-            "Fake Probability": round(fake_probability * 100, 2),
-            "Real Probability": round(real_probability * 100, 2)
+            "Fake Probability": round(
+                fake_probability * 100, 2
+            ),
+            "Real Probability": round(
+                real_probability * 100, 2
+            )
         })
 
         st.divider()
 
         st.markdown(
-            '<div class="section-title">Prediction Results</div>',
+            '<div class="section-title">📊 Analysis Results</div>',
             unsafe_allow_html=True
         )
 
         if predicted_class == 0:
-            st.error("⚠️ This job posting is predicted to be FAKE.")
+
+            st.error(
+                "⚠️ AI Prediction: This job posting is FAKE."
+            )
+
             st.warning(
-                "Be careful! Verify the recruiter and company before sharing personal information or making payments."
+                "Be careful! Verify the company and recruiter "
+                "before sharing personal details or making payments."
             )
+
         else:
-            st.success("✅ This job posting is predicted to be REAL.")
-            st.info(
-                "The model predicts this posting as real. Always verify the employer independently."
+
+            st.success(
+                "✅ AI Prediction: This job posting is REAL."
             )
+
+            st.info(
+                "The model predicts this posting as real. "
+                "Always verify the employer independently."
+            )
+
+        # PROBABILITY METRICS
 
         col1, col2 = st.columns(2)
 
         with col1:
             st.metric(
-                "Fake Probability",
+                "🔴 Fake Probability",
                 f"{fake_probability * 100:.2f}%"
             )
 
         with col2:
             st.metric(
-                "Real Probability",
+                "🟢 Real Probability",
                 f"{real_probability * 100:.2f}%"
             )
 
-        chart_data = pd.DataFrame({
-            "Category": ["Fake", "Real"],
-            "Probability": [
-                fake_probability * 100,
-                real_probability * 100
-            ]
-        })
+        # CHART
 
-        st.subheader("Prediction Probability Chart")
+        st.subheader("Prediction Probability")
 
-        st.bar_chart(
-            chart_data.set_index("Category")
+        chart_data = pd.DataFrame(
+            {
+                "Probability (%)": [
+                    fake_probability * 100,
+                    real_probability * 100
+                ]
+            },
+            index=["Fake Job", "Real Job"]
         )
+
+        st.bar_chart(chart_data)
 
         st.caption(
-            "Probabilities are model estimates, not guarantees of job authenticity."
+            "Probabilities are model estimates, not guarantees "
+            "of whether a job is genuine or fraudulent."
         )
 
-        st.subheader("Job Safety Recommendations")
+        # SAFETY TIPS
 
-        st.write("- Verify the official company website.")
-        st.write("- Check the recruiter's identity.")
-        st.write("- Never pay money for a job offer.")
-        st.write("- Avoid sharing sensitive personal information.")
+        st.divider()
 
-# ---------------- HISTORY PAGE ----------------
+        st.markdown(
+            '<div class="section-title">🛡️ Job Safety Tips</div>',
+            unsafe_allow_html=True
+        )
 
-elif page == "Prediction History":
+        st.write("✔ Verify the official company website.")
+        st.write("✔ Check the recruiter's identity.")
+        st.write("✔ Never pay money to get a job.")
+        st.write("✔ Avoid sharing sensitive personal information.")
+
+# ==========================================
+# PREDICTION HISTORY
+# ==========================================
+
+elif page == "📊 Prediction History":
 
     st.title("📊 Prediction History")
 
@@ -263,56 +449,82 @@ elif page == "Prediction History":
 
         st.dataframe(
             history_df,
-            use_container_width=True
+            use_container_width=True,
+            hide_index=True
         )
 
-        if st.button("Clear History"):
+        if st.button("🗑️ Clear History"):
+
             st.session_state.history = []
+
             st.rerun()
 
     else:
-        st.info("No predictions available yet. Analyze a job first.")
 
-# ---------------- ABOUT MODEL PAGE ----------------
+        st.info(
+            "No prediction history available. "
+            "Analyze a job posting first."
+        )
 
-elif page == "About Model":
+# ==========================================
+# ABOUT MODEL
+# ==========================================
 
-    st.title("🤖 About Our Machine Learning Model")
+elif page == "🤖 About Model":
+
+    st.markdown(
+        '<div class="main-title">About Our AI Model</div>',
+        unsafe_allow_html=True
+    )
 
     st.write(
         "This application uses a trained Logistic Regression "
-        "classification model to predict whether a job posting "
-        "is fake or real."
+        "classification model to identify potentially fraudulent "
+        "job postings."
     )
 
-    st.subheader("Algorithm")
+    st.subheader("🧠 Algorithm")
 
-    st.write("Logistic Regression")
+    st.info("Logistic Regression")
 
-    st.subheader("Input Features")
+    st.subheader("📌 Input Features")
 
     st.write("1. Telecommuting")
     st.write("2. Has Company Logo")
     st.write("3. Has Questions")
 
-    st.subheader("Target Variable")
+    st.subheader("🎯 Target Variable")
 
     st.write("0 = Fake Job")
     st.write("1 = Real Job")
 
-    st.subheader("Disclaimer")
+    st.subheader("⚙️ Model Information")
 
     st.write(
-        "This model provides predictions based on its training data "
-        "and selected features. It cannot guarantee that a job is "
-        "genuine or fraudulent. Always verify job opportunities "
-        "through official sources."
+        "The model analyzes the three selected features "
+        "and generates a classification prediction with "
+        "estimated probabilities."
     )
 
-# ---------------- FOOTER ----------------
+    st.subheader("⚠️ Disclaimer")
 
-st.sidebar.divider()
+    st.write(
+        "This model is an educational machine learning project. "
+        "Its predictions are not a guarantee of job authenticity. "
+        "Always independently verify job opportunities."
+    )
 
-st.sidebar.caption(
-    "Fake Job Detection System | Machine Learning Project"
+# ==========================================
+# FOOTER
+# ==========================================
+
+st.markdown(
+    """
+    <div class="footer">
+        ✨ AI Fake Job Detection System
+        <br>
+        Built with Python, Streamlit & Machine Learning
+    </div>
+    """,
+    unsafe_allow_html=True
 )
