@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 # Load trained model
-model = joblib.load("model.pkl")
+model = joblib.load("Fake job detection.pkl")
 
 # Page configuration
 st.set_page_config(
