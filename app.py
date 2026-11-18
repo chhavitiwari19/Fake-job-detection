@@ -485,6 +485,58 @@ with col2:
 # PREDICTION
 # --------------------------------------------------
 
+st.markdown("---")
+st.markdown("## 🚀 Detect Job Authenticity")
+
+if st.button("🔍 Predict Job Authenticity", use_container_width=True):
+
+    if not st.session_state.title.strip() or not st.session_state.description.strip():
+        st.warning("Please enter at least the Job Title and Job Description.")
+
+    else:
+
+        # Combine the five text features in the same order
+        # used during model training.
+
+        combined_text = " ".join([
+            st.session_state.title,
+            st.session_state.company_profile,
+            st.session_state.description,
+            st.session_state.requirements,
+            st.session_state.benefits
+        ])
+
+        # Convert text into TF-IDF features
+        text_data = vectorizer.transform([combined_text])
+
+        # Convert Yes/No into numeric values
+        numeric_data = np.array([[
+            1 if st.session_state.telecommuting == "Yes" else 0,
+            1 if st.session_state.has_company_logo == "Yes" else 0,
+            1 if st.session_state.has_questions == "Yes" else 0
+        ]])
+
+        # Combine text and numeric features
+        final_data = hstack([
+            text_data,
+            csr_matrix(numeric_data)
+        ])
+
+        # Predict class and probabilities
+        predicted_class = model.predict(final_data)[0]
+        probabilities = model.predict_proba(final_data)[0]
+
+        classes = list(model.classes_)
+
+        fake_probability = probabilities[classes.index(1)] * 100
+        real_probability = probabilities[classes.index(0)] * 100
+
+        # Save result for display
+        st.session_state.prediction_done = True
+        st.session_state.predicted_class = predicted_class
+        st.session_state.real_probability = real_probability
+        st.session_state.fake_probability = fake_probability
+
 # --------------------------------------------------
 # EXPLAIN PREDICTION
 # --------------------------------------------------
@@ -512,7 +564,6 @@ def explain_prediction(text_data, numeric_data, predicted_class):
         word_results.sort(key=lambda x: x[1], reverse=True)
 
     return word_results[:5]
-
 
 
 # --------------------------------------------------
