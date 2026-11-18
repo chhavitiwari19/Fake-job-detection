@@ -480,6 +480,34 @@ with col2:
         key="has_questions"
     )
 
+# --------------------------------------------------
+# EXPLAIN PREDICTION
+# --------------------------------------------------
+
+def explain_prediction(text_data, numeric_data, predicted_class):
+
+    feature_names = vectorizer.get_feature_names_out()
+
+    text_weights = model.coef_[0][:len(feature_names)]
+    text_values = text_data.toarray()[0]
+
+    contributions = text_values * text_weights
+
+    word_results = []
+
+    for i in range(len(feature_names)):
+        if text_values[i] > 0:
+            word_results.append(
+                (feature_names[i], contributions[i])
+            )
+
+    if predicted_class == 1:
+        word_results.sort(key=lambda x: x[1])
+    else:
+        word_results.sort(key=lambda x: x[1], reverse=True)
+
+    return word_results[:5]
+
 
 # --------------------------------------------------
 # PREDICTION
@@ -536,34 +564,6 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
         st.session_state.predicted_class = predicted_class
         st.session_state.real_probability = real_probability
         st.session_state.fake_probability = fake_probability
-
-# --------------------------------------------------
-# EXPLAIN PREDICTION
-# --------------------------------------------------
-
-def explain_prediction(text_data, numeric_data, predicted_class):
-
-    feature_names = vectorizer.get_feature_names_out()
-
-    text_weights = model.coef_[0][:len(feature_names)]
-    text_values = text_data.toarray()[0]
-
-    contributions = text_values * text_weights
-
-    word_results = []
-
-    for i in range(len(feature_names)):
-        if text_values[i] > 0:
-            word_results.append(
-                (feature_names[i], contributions[i])
-            )
-
-    if predicted_class == 1:
-        word_results.sort(key=lambda x: x[1])
-    else:
-        word_results.sort(key=lambda x: x[1], reverse=True)
-
-    return word_results[:5]
 
 
 # --------------------------------------------------
