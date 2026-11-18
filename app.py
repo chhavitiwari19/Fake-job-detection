@@ -57,40 +57,6 @@ div[data-testid="stMetric"] {
 # --------------------------------
 # 4. Sample Job Details
 # --------------------------------
-
-samples = {
-    "Marketing Assistant": {
-        "title": "Marketing Assistant",
-        "company_profile": "We are an established marketing company working with different businesses.",
-        "description": "We are hiring a marketing assistant to support our marketing team, prepare reports and manage social media campaigns.",
-        "requirements": "Good communication skills, basic computer knowledge and interest in marketing.",
-        "benefits": "Professional training, career development and standard company benefits.",
-        "telecommuting": 0,
-        "has_company_logo": 1,
-        "has_questions": 1
-    },
-
-    "Software Developer": {
-        "title": "Software Developer",
-        "company_profile": "Our software company develops web applications and business technology solutions.",
-        "description": "We are looking for a software developer to develop and maintain applications using Python and web technologies.",
-        "requirements": "Knowledge of Python, HTML, CSS, JavaScript and problem-solving skills.",
-        "benefits": "Learning opportunities, team collaboration and professional growth.",
-        "telecommuting": 1,
-        "has_company_logo": 1,
-        "has_questions": 1
-    },
-
-    "Data Entry Work From Home": {
-        "title": "Work From Home Data Entry",
-        "company_profile": "",
-        "description": "Earn a very high income from home with no experience. Get started immediately with guaranteed earnings.",
-        "requirements": "No experience or special skills required. Immediate joining.",
-        "benefits": "Very high earnings and flexible working hours.",
-        "telecommuting": 1,
-        "has_company_logo": 0,
-        "has_questions": 0
-    }
     
 samples = {
     "Software Developer": {
@@ -258,7 +224,7 @@ samples = {
         "has_questions": 0
     }
 }
-}
+
 
 # --------------------------------
 # 5. Load Selected Sample
@@ -539,5 +505,3 @@ st.divider()
 st.caption(
     "Fake Job Detection AI | Machine Learning Project"
 )
-
-
