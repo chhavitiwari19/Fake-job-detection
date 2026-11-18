@@ -1,6 +1,5 @@
 
 import streamlit as st
-import pandas as pd
 import numpy as np
 import joblib
 
@@ -8,19 +7,18 @@ from scipy.sparse import hstack, csr_matrix
 
 
 # --------------------------------------------------
-# PAGE CONFIGURATION
+# 1. PAGE CONFIGURATION
 # --------------------------------------------------
 
 st.set_page_config(
     page_title="Fake Job Detection AI",
     page_icon="🔍",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    layout="wide"
 )
 
 
 # --------------------------------------------------
-# LOAD MODEL AND VECTORIZER
+# 2. LOAD MODEL AND VECTORIZER
 # --------------------------------------------------
 
 @st.cache_resource
@@ -33,13 +31,13 @@ def load_files():
 try:
     model, vectorizer = load_files()
 except Exception as e:
-    st.error("Model files could not be loaded.")
-    st.write("Please check that both .pkl files are in your GitHub repository.")
+    st.error("Unable to load model files.")
+    st.error(str(e))
     st.stop()
 
 
 # --------------------------------------------------
-# PREMIUM GRADIENT PURPLE THEME
+# 3. PURPLE GRADIENT THEME
 # --------------------------------------------------
 
 st.markdown("""
@@ -49,8 +47,8 @@ st.markdown("""
     background:
         radial-gradient(circle at top left, #4c1d95 0%, transparent 35%),
         radial-gradient(circle at bottom right, #701a75 0%, transparent 35%),
-        linear-gradient(135deg, #0f1024 0%, #17132f 50%, #21113b 100%);
-    color: #ffffff;
+        linear-gradient(135deg, #0f1024, #17132f, #21113b);
+    color: white;
 }
 
 header[data-testid="stHeader"] {
@@ -58,66 +56,46 @@ header[data-testid="stHeader"] {
 }
 
 .block-container {
+    max-width: 1200px;
     padding-top: 2rem;
     padding-bottom: 3rem;
-    max-width: 1200px;
 }
 
 h1, h2, h3, p, label {
-    color: #ffffff !important;
+    color: white !important;
 }
 
 .hero {
     background: linear-gradient(
         120deg,
-        rgba(124, 58, 237, 0.35),
-        rgba(192, 38, 211, 0.20)
+        rgba(124, 58, 237, 0.4),
+        rgba(192, 38, 211, 0.2)
     );
-    border: 1px solid rgba(216, 180, 254, 0.30);
+    border: 1px solid rgba(216, 180, 254, 0.3);
     border-radius: 22px;
     padding: 30px;
-    margin-bottom: 25px;
     text-align: center;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    margin-bottom: 25px;
 }
 
 .hero h1 {
     font-size: 38px;
     font-weight: 800;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #ffffff, #d8b4fe, #f0abfc);
+    background: linear-gradient(90deg, white, #d8b4fe, #f0abfc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero p {
     color: #e9d5ff !important;
-    font-size: 16px;
 }
 
 .section-card {
     background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(216, 180, 254, 0.20);
+    border: 1px solid rgba(216, 180, 254, 0.2);
     border-radius: 18px;
-    padding: 22px;
-    margin-bottom: 20px;
-}
-
-div[data-testid="stTextInput"] input,
-div[data-testid="stTextArea"] textarea,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] {
-    background-color: rgba(255, 255, 255, 0.10);
-    color: white;
-    border-radius: 10px;
-}
-
-div[data-testid="stTextInput"] input,
-div[data-testid="stTextArea"] textarea {
-    border: 1px solid rgba(216, 180, 254, 0.35);
-}
-
-div[data-testid="stSelectbox"] div[data-baseweb="select"] * {
-    color: white;
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
 div.stButton > button {
@@ -125,32 +103,23 @@ div.stButton > button {
     color: white;
     border: none;
     border-radius: 12px;
-    padding: 12px 28px;
+    padding: 12px;
     font-weight: 700;
-    width: 100%;
-    transition: 0.3s;
 }
 
 div.stButton > button:hover {
     background: linear-gradient(90deg, #9333ea, #db2777);
     color: white;
     border: 1px solid #e9d5ff;
-    transform: translateY(-2px);
 }
 
 .result-card {
     background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(216, 180, 254, 0.30);
+    border: 1px solid rgba(216, 180, 254, 0.3);
     border-radius: 18px;
-    padding: 22px;
+    padding: 25px;
     text-align: center;
-    margin-top: 15px;
-}
-
-.real-result {
-    color: #86efac;
-    font-size: 30px;
-    font-weight: 800;
+    margin: 15px 0;
 }
 
 .fake-result {
@@ -159,14 +128,24 @@ div.stButton > button:hover {
     font-weight: 800;
 }
 
-.small-note {
-    color: #d8b4fe;
-    font-size: 13px;
-    text-align: center;
+.real-result {
+    color: #86efac;
+    font-size: 30px;
+    font-weight: 800;
 }
 
-hr {
-    border-color: rgba(216, 180, 254, 0.25);
+.factor-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(216, 180, 254, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.small-note {
+    color: #d8b4fe;
+    text-align: center;
+    font-size: 13px;
 }
 
 </style>
@@ -174,23 +153,20 @@ hr {
 
 
 # --------------------------------------------------
-# HEADER
+# 4. HEADER
 # --------------------------------------------------
 
 st.markdown("""
 <div class="hero">
     <h1>🔍 Fake Job Detection AI</h1>
-    <p>
-        Smart Machine Learning System to Identify
-        Fake and Genuine Job Postings
-    </p>
-    <p>Powered by Artificial Intelligence & Logistic Regression</p>
+    <p>Smart Machine Learning System to Identify Fake and Genuine Jobs</p>
+    <p>Powered by Artificial Intelligence and Logistic Regression</p>
 </div>
 """, unsafe_allow_html=True)
 
 
 # --------------------------------------------------
-# SAMPLE JOB DATA
+# 5. SAMPLE JOB DATA
 # --------------------------------------------------
 
 samples = {
@@ -363,13 +339,15 @@ samples = {
 
 
 # --------------------------------------------------
-# LOAD SAMPLE CALLBACK
+# 6. SAMPLE JOB CALLBACK
 # --------------------------------------------------
 
 def load_sample():
+
     selected = st.session_state.sample_choice
 
     if selected in samples:
+
         sample = samples[selected]
 
         for key, value in sample.items():
@@ -377,7 +355,7 @@ def load_sample():
 
 
 # --------------------------------------------------
-# INITIALIZE INPUT VALUES
+# 7. INITIAL INPUT VALUES
 # --------------------------------------------------
 
 default_values = {
@@ -392,12 +370,13 @@ default_values = {
 }
 
 for key, value in default_values.items():
+
     if key not in st.session_state:
         st.session_state[key] = value
 
 
 # --------------------------------------------------
-# SAMPLE JOB SELECTION
+# 8. SAMPLE JOB SELECTION
 # --------------------------------------------------
 
 st.markdown("## ✨ Try a Suggested Job")
@@ -409,22 +388,22 @@ st.selectbox(
     on_change=load_sample
 )
 
-st.caption("Select a sample to automatically fill the job details, or enter your own details below.")
+st.caption(
+    "Select a sample job to automatically fill the details, "
+    "or enter your own job details."
+)
 
 
 # --------------------------------------------------
-# JOB DETAILS INPUT
+# 9. JOB DETAILS
 # --------------------------------------------------
 
-st.markdown("""
-<div class="section-card">
-    <h3>📝 Enter Job Details</h3>
-</div>
-""", unsafe_allow_html=True)
+st.markdown("## 📝 Enter Job Details")
 
 col1, col2 = st.columns(2)
 
 with col1:
+
     st.text_input(
         "Job Title",
         key="title",
@@ -434,33 +413,31 @@ with col1:
     st.text_area(
         "Company Profile",
         key="company_profile",
-        height=130,
-        placeholder="Enter company information"
+        height=130
     )
 
     st.text_area(
         "Job Description",
         key="description",
-        height=180,
-        placeholder="Enter job description"
+        height=180
     )
 
+
 with col2:
+
     st.text_area(
         "Requirements",
         key="requirements",
-        height=130,
-        placeholder="Enter job requirements"
+        height=130
     )
 
     st.text_area(
         "Benefits",
         key="benefits",
-        height=130,
-        placeholder="Enter job benefits"
+        height=130
     )
 
-    st.markdown("#### Additional Information")
+    st.markdown("### Additional Information")
 
     st.selectbox(
         "Does the company allow telecommuting?",
@@ -480,37 +457,9 @@ with col2:
         key="has_questions"
     )
 
-# --------------------------------------------------
-# EXPLAIN PREDICTION
-# --------------------------------------------------
-
-def explain_prediction(text_data, numeric_data, predicted_class):
-
-    feature_names = vectorizer.get_feature_names_out()
-
-    text_weights = model.coef_[0][:len(feature_names)]
-    text_values = text_data.toarray()[0]
-
-    contributions = text_values * text_weights
-
-    word_results = []
-
-    for i in range(len(feature_names)):
-        if text_values[i] > 0:
-            word_results.append(
-                (feature_names[i], contributions[i])
-            )
-
-    if predicted_class == 1:
-        word_results.sort(key=lambda x: x[1])
-    else:
-        word_results.sort(key=lambda x: x[1], reverse=True)
-
-    return word_results[:5]
-
 
 # --------------------------------------------------
-# PREDICTION
+# 10. PREDICTION BUTTON
 # --------------------------------------------------
 
 st.markdown("---")
@@ -518,110 +467,304 @@ st.markdown("## 🚀 Detect Job Authenticity")
 
 if st.button("🔍 Predict Job Authenticity", use_container_width=True):
 
-    if not st.session_state.title.strip() or not st.session_state.description.strip():
-        st.warning("Please enter at least the Job Title and Job Description.")
+    if (
+        not st.session_state.title.strip()
+        or not st.session_state.description.strip()
+    ):
+
+        st.warning(
+            "Please enter at least the Job Title and Job Description."
+        )
 
     else:
 
-        # Combine the five text features in the same order
-        # used during model training.
+        try:
 
-        combined_text = " ".join([
-            st.session_state.title,
-            st.session_state.company_profile,
-            st.session_state.description,
-            st.session_state.requirements,
-            st.session_state.benefits
-        ])
+            # Combine the five text features in training order
 
-        # Convert text into TF-IDF features
-        text_data = vectorizer.transform([combined_text])
+            combined_text = " ".join([
+                st.session_state.title,
+                st.session_state.company_profile,
+                st.session_state.description,
+                st.session_state.requirements,
+                st.session_state.benefits
+            ])
 
-        # Convert Yes/No into numeric values
-        numeric_data = np.array([[
-            1 if st.session_state.telecommuting == "Yes" else 0,
-            1 if st.session_state.has_company_logo == "Yes" else 0,
-            1 if st.session_state.has_questions == "Yes" else 0
-        ]])
+            # Convert text into TF-IDF features
 
-        # Combine text and numeric features
-        final_data = hstack([
-            text_data,
-            csr_matrix(numeric_data)
-        ])
+            text_data = vectorizer.transform([combined_text])
 
-        # Predict class and probabilities
-        predicted_class = model.predict(final_data)[0]
-        probabilities = model.predict_proba(final_data)[0]
+            # Convert Yes/No into numeric values
 
-        classes = list(model.classes_)
+            numeric_data = np.array([[
+                1 if st.session_state.telecommuting == "Yes" else 0,
+                1 if st.session_state.has_company_logo == "Yes" else 0,
+                1 if st.session_state.has_questions == "Yes" else 0
+            ]])
 
-        fake_probability = probabilities[classes.index(1)] * 100
-        real_probability = probabilities[classes.index(0)] * 100
+            # Combine text and numeric features
 
-        # Save result for display
-        st.session_state.prediction_done = True
-        st.session_state.predicted_class = predicted_class
-        st.session_state.real_probability = real_probability
-        st.session_state.fake_probability = fake_probability
+            final_data = hstack([
+                text_data,
+                csr_matrix(numeric_data)
+            ]).tocsr()
+
+            # Check model feature count
+
+            if final_data.shape[1] != model.coef_.shape[1]:
+                st.error(
+                    "The model feature count does not match the app inputs. "
+                    "Please check your training code and saved model."
+                )
+                st.stop()
+
+            # Predict class
+
+            predicted_class = model.predict(final_data)[0]
+
+            # Predict probabilities
+
+            probabilities = model.predict_proba(final_data)[0]
+
+            classes = list(model.classes_)
+
+            fake_probability = (
+                probabilities[classes.index(1)] * 100
+            )
+
+            real_probability = (
+                probabilities[classes.index(0)] * 100
+            )
+
+            # ------------------------------------------
+            # DISPLAY PREDICTION
+            # ------------------------------------------
+
+            st.markdown("---")
+            st.markdown("## 📊 Prediction Result")
+
+            if predicted_class == 1:
+
+                st.markdown("""
+                <div class="result-card">
+                    <div class="fake-result">
+                        ⚠️ FAKE JOB POSTING
+                    </div>
+                    <p>Our model classified this job as potentially fraudulent.</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+            else:
+
+                st.markdown("""
+                <div class="result-card">
+                    <div class="real-result">
+                        ✅ REAL JOB POSTING
+                    </div>
+                    <p>Our model classified this job as likely genuine.</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+            # ------------------------------------------
+            # DISPLAY PROBABILITIES
+            # ------------------------------------------
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+
+                st.metric(
+                    "Real Probability",
+                    f"{real_probability:.2f}%"
+                )
+
+                st.progress(
+                    int(round(real_probability))
+                )
+
+            with col2:
+
+                st.metric(
+                    "Fake Probability",
+                    f"{fake_probability:.2f}%"
+                )
+
+                st.progress(
+                    int(round(fake_probability))
+                )
+
+            # ------------------------------------------
+            # EXPLANATION SECTION
+            # ------------------------------------------
+
+            st.markdown("---")
+            st.markdown("## 🧠 Why Did the Model Make This Prediction?")
+
+            st.write(
+                "The following words and job details influenced "
+                "the Logistic Regression model's prediction."
+            )
+
+            # For binary Logistic Regression with classes [0, 1],
+            # positive contributions push toward class 1 (Fake).
+            # Negative contributions push toward class 0 (Real).
+
+            if (
+                len(model.classes_) != 2
+                or 1 not in classes
+                or 0 not in classes
+            ):
+                st.warning(
+                    "This explanation code requires a binary model "
+                    "with target labels 0 = Real and 1 = Fake."
+                )
+
+            else:
+
+                feature_names = vectorizer.get_feature_names_out()
+
+                coefficients = model.coef_[0]
+
+                text_coefficients = coefficients[
+                    :len(feature_names)
+                ]
+
+                numeric_coefficients = coefficients[
+                    len(feature_names):
+                ]
+
+                text_values = text_data.toarray()[0]
+
+                # Calculate word contributions
+
+                word_contributions = (
+                    text_values * text_coefficients
+                )
+
+                factors = []
+
+                for i in range(len(feature_names)):
+
+                    contribution = word_contributions[i]
+
+                    if abs(contribution) > 0.000001:
+
+                        factors.append({
+                            "factor": feature_names[i],
+                            "contribution": contribution,
+                            "type": "Text"
+                        })
+
+                # Calculate numeric feature contributions
+
+                numeric_names = [
+                    "Telecommuting",
+                    "Company Logo",
+                    "Screening Questions"
+                ]
+
+                numeric_values = numeric_data[0]
+
+                if len(numeric_coefficients) == 3:
+
+                    for i in range(3):
+
+                        contribution = (
+                            numeric_values[i] *
+                            numeric_coefficients[i]
+                        )
+
+                        if abs(contribution) > 0.000001:
+
+                            value_label = (
+                                "Yes" if numeric_values[i] == 1
+                                else "No"
+                            )
+
+                            factors.append({
+                                "factor": (
+                                    numeric_names[i] +
+                                    " = " + value_label
+                                ),
+                                "contribution": contribution,
+                                "type": "Job Detail"
+                            })
+
+                # Sort factors by absolute contribution
+
+                factors.sort(
+                    key=lambda x: abs(x["contribution"]),
+                    reverse=True
+                )
+
+                if factors:
+
+                    for factor in factors[:8]:
+
+                        if factor["contribution"] > 0:
+
+                            direction = "Pushes toward FAKE"
+                            color = "#fda4af"
+                            symbol = "⚠️"
+
+                        else:
+
+                            direction = "Pushes toward REAL"
+                            color = "#86efac"
+                            symbol = "✅"
+
+                        st.markdown(
+                            f"""
+                            <div class="factor-card">
+                                <b>{symbol} {factor["factor"]}</b>
+                                <br>
+                                <span style="color:{color};">
+                                    {direction}
+                                </span>
+                                <br>
+                                <small>
+                                    Feature contribution:
+                                    {factor["contribution"]:.5f}
+                                </small>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
+                else:
+
+                    st.info(
+                        "The model did not find any individual "
+                        "feature contributions large enough to display."
+                    )
+
+                st.caption(
+                    "A positive contribution pushes the model toward Fake. "
+                    "A negative contribution pushes it toward Real. "
+                    "These are model associations, not proof that a job "
+                    "is fraudulent or genuine."
+                )
+
+            # ------------------------------------------
+            # FINAL SAFETY NOTE
+            # ------------------------------------------
+
+            st.info(
+                "Important: This is a machine learning prediction, "
+                "not a verified investigation. Always check the "
+                "company website, official contact details and "
+                "job offer before sharing personal information "
+                "or paying any fees."
+            )
+
+        except Exception as e:
+
+            st.error("Something went wrong during prediction.")
+            st.exception(e)
 
 
 # --------------------------------------------------
-# DISPLAY RESULT
-# --------------------------------------------------
-
-if st.session_state.get("prediction_done", False):
-
-    st.markdown("---")
-    st.markdown("## 📊 Prediction Result")
-
-    predicted_class = st.session_state.predicted_class
-    real_probability = st.session_state.real_probability
-    fake_probability = st.session_state.fake_probability
-
-    if predicted_class == 1:
-
-        st.markdown("""
-        <div class="result-card">
-            <div class="fake-result">⚠️ FAKE JOB POSTING</div>
-            <p>This job posting has been classified as potentially fraudulent.</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    else:
-
-        st.markdown("""
-        <div class="result-card">
-            <div class="real-result">✅ REAL JOB POSTING</div>
-            <p>This job posting has been classified as likely genuine.</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.metric(
-            "Real Probability",
-            f"{real_probability:.2f}%"
-        )
-        st.progress(int(real_probability))
-
-    with col2:
-        st.metric(
-            "Fake Probability",
-            f"{fake_probability:.2f}%"
-        )
-        st.progress(int(fake_probability))
-
-    st.info(
-        "This prediction is based on patterns learned from the training dataset. "
-        "It is not a guarantee that a job is genuine or fraudulent. "
-        "Always verify the company and job details independently."
-    )
-
-
-# --------------------------------------------------
-# FOOTER
+# 11. FOOTER
 # --------------------------------------------------
 
 st.markdown("---")
@@ -630,6 +773,6 @@ st.markdown("""
 <p class="small-note">
     Fake Job Detection AI | Machine Learning Project
     <br>
-    Built with Python, Streamlit, TF-IDF and Logistic Regression
+    Built using Python, Streamlit, TF-IDF and Logistic Regression
 </p>
 """, unsafe_allow_html=True)
