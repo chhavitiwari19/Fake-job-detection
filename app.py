@@ -6,7 +6,6 @@ from scipy.sparse import hstack, csr_matrix
 
 st.set_page_config(
     page_title="Fake Job Detection AI",
-    page_icon="🌈",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -282,7 +281,7 @@ def run_prediction():
 def footer():
     st.markdown("---")
     st.markdown("""
-    <p class="small-note">🌈 FAKE JOB DETECTION AI<br>
+    <p class="small-note"> FAKE JOB DETECTION AI<br>
     Built with Python • Streamlit • TF-IDF • Logistic Regression<br>
     ✨ Machine Learning Project</p>
     """, unsafe_allow_html=True)
@@ -292,7 +291,7 @@ if st.session_state.page == "input":
     st.markdown("""
     <div class="hero">
       <div class="eyebrow">🌌 AURORA AI • RECRUITMENT SAFETY • STEP 1 OF 2</div>
-      <h1>🌈 Fake Job Detection AI</h1>
+      <h1> Fake Job Detection AI</h1>
       <p>Check a job posting with an AI-powered text analysis model.</p>
       <span class="pill">✨ TF-IDF</span> <span class="pill">🧠 Logistic Regression</span> <span class="pill">🛡️ Job Safety</span>
     </div>
@@ -393,7 +392,6 @@ else:
         card_class = "fake"
     else:
         result_text = "🛡️ REAL JOB"
-        result_emoji = "🌿"
         result_description = "The model classified this posting as likely genuine. Still verify the employer independently."
         result_class = "real-result"
         card_class = "real"
