@@ -38,16 +38,15 @@ except Exception as e:
 
 
 # --------------------------------------------------
-# 3. MODERATE PROFESSIONAL BLUE THEME
+# 3. MIDNIGHT TEAL + SOFT MINT THEME
 # --------------------------------------------------
 
 st.markdown("""
 <style>
 
-/* Main background */
 .stApp {
-    background: #f4f6fa;
-    color: #263449;
+    background: #142B35;
+    color: #E7F0ED;
 }
 
 header[data-testid="stHeader"] {
@@ -60,38 +59,35 @@ header[data-testid="stHeader"] {
     padding-bottom: 3rem;
 }
 
-/* General text */
 h1, h2, h3, h4, p, label {
-    color: #263449 !important;
+    color: #E7F0ED !important;
 }
 
-/* Main heading card */
+/* Header */
 .hero {
-    background: #ffffff;
-    border: 1px solid #dce3ed;
-    border-left: 5px solid #315b91;
-    border-radius: 14px;
-    padding: 28px;
+    background: #1D4148;
+    border: 1px solid #37616A;
+    border-radius: 18px;
+    padding: 30px;
     text-align: center;
     margin-bottom: 25px;
-    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
 }
 
 .hero h1 {
-    font-size: 36px;
-    font-weight: 750;
-    color: #23466f !important;
+    color: #78DCC5 !important;
+    font-size: 38px;
+    font-weight: 800;
 }
 
 .hero p {
-    color: #64748b !important;
+    color: #C2DAD4 !important;
 }
 
 /* Section cards */
 .section-card {
-    background: #ffffff;
-    border: 1px solid #dce3ed;
-    border-radius: 14px;
+    background: #1D4148;
+    border: 1px solid #37616A;
+    border-radius: 15px;
     padding: 20px;
     margin-bottom: 15px;
 }
@@ -99,94 +95,98 @@ h1, h2, h3, h4, p, label {
 /* Input fields */
 .stTextInput input,
 .stTextArea textarea {
-    background: #ffffff !important;
-    color: #263449 !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 8px !important;
+    background: #F4F8F6 !important;
+    color: #142B35 !important;
+    border: 1px solid #8BAFA6 !important;
+    border-radius: 9px !important;
 }
 
 .stTextInput input:focus,
 .stTextArea textarea:focus {
-    border-color: #4776ad !important;
-    box-shadow: 0 0 0 1px #4776ad !important;
+    border-color: #63C7B2 !important;
+    box-shadow: 0 0 0 1px #63C7B2 !important;
 }
 
 /* Dropdowns */
 [data-baseweb="select"] > div {
-    background: #ffffff !important;
-    border-color: #cbd5e1 !important;
-    color: #263449 !important;
+    background: #F4F8F6 !important;
+    border-color: #8BAFA6 !important;
+    color: #142B35 !important;
 }
 
 /* Buttons */
 div.stButton > button {
-    background: #315b91;
-    color: #ffffff !important;
+    background: #63C7B2;
+    color: #142B35 !important;
     border: none;
-    border-radius: 9px;
+    border-radius: 10px;
     padding: 12px;
-    font-weight: 650;
-    transition: 0.2s ease;
+    font-weight: 750;
 }
 
 div.stButton > button:hover {
-    background: #23466f;
-    color: #ffffff !important;
+    background: #85E0CB;
+    color: #142B35 !important;
     border: none;
 }
 
 /* Prediction result */
 .result-card {
-    background: #ffffff;
-    border: 1px solid #dce3ed;
-    border-radius: 14px;
+    background: #1D4148;
+    border: 1px solid #37616A;
+    border-radius: 16px;
     padding: 25px;
     text-align: center;
     margin: 15px 0;
-    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
 }
 
 .fake-result {
-    color: #c03945;
-    font-size: 29px;
+    color: #FF929B;
+    font-size: 30px;
     font-weight: 800;
 }
 
 .real-result {
-    color: #23834b;
-    font-size: 29px;
+    color: #78DCC5;
+    font-size: 30px;
     font-weight: 800;
 }
 
-/* Feature explanation cards */
+/* Feature cards */
 .factor-card {
-    background: #ffffff;
-    border: 1px solid #dce3ed;
-    border-left: 4px solid #4776ad;
-    border-radius: 10px;
+    background: #1D4148;
+    border: 1px solid #37616A;
+    border-left: 4px solid #63C7B2;
+    border-radius: 12px;
     padding: 15px;
     margin-bottom: 10px;
 }
 
 /* Footer */
 .small-note {
-    color: #64748b !important;
+    color: #A9C5BD !important;
     text-align: center;
     font-size: 13px;
 }
 
-/* Metric values */
+/* Metrics */
 [data-testid="stMetricValue"] {
-    color: #23466f !important;
+    color: #78DCC5 !important;
 }
 
-/* Info and warning messages */
-.stAlert {
-    border-radius: 10px;
+/* Progress bar */
+.stProgress > div > div > div {
+    background-color: #63C7B2;
+}
+
+/* Divider */
+hr {
+    border-color: #37616A;
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 
