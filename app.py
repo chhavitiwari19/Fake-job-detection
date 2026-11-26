@@ -38,18 +38,16 @@ except Exception as e:
 
 
 # --------------------------------------------------
-# 3. PURPLE GRADIENT THEME
+# 3. MODERATE PROFESSIONAL BLUE THEME
 # --------------------------------------------------
 
 st.markdown("""
 <style>
 
+/* Main background */
 .stApp {
-    background:
-        radial-gradient(circle at top left, #4c1d95 0%, transparent 35%),
-        radial-gradient(circle at bottom right, #701a75 0%, transparent 35%),
-        linear-gradient(135deg, #0f1024, #17132f, #21113b);
-    color: white;
+    background: #f4f6fa;
+    color: #263449;
 }
 
 header[data-testid="stHeader"] {
@@ -62,95 +60,134 @@ header[data-testid="stHeader"] {
     padding-bottom: 3rem;
 }
 
-h1, h2, h3, p, label {
-    color: white !important;
+/* General text */
+h1, h2, h3, h4, p, label {
+    color: #263449 !important;
 }
 
+/* Main heading card */
 .hero {
-    background: linear-gradient(
-        120deg,
-        rgba(124, 58, 237, 0.4),
-        rgba(192, 38, 211, 0.2)
-    );
-    border: 1px solid rgba(216, 180, 254, 0.3);
-    border-radius: 22px;
-    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #dce3ed;
+    border-left: 5px solid #315b91;
+    border-radius: 14px;
+    padding: 28px;
     text-align: center;
     margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
 }
 
 .hero h1 {
-    font-size: 38px;
-    font-weight: 800;
-    background: linear-gradient(90deg, white, #d8b4fe, #f0abfc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 36px;
+    font-weight: 750;
+    color: #23466f !important;
 }
 
 .hero p {
-    color: #e9d5ff !important;
+    color: #64748b !important;
 }
 
+/* Section cards */
 .section-card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(216, 180, 254, 0.2);
-    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid #dce3ed;
+    border-radius: 14px;
     padding: 20px;
     margin-bottom: 15px;
 }
 
+/* Input fields */
+.stTextInput input,
+.stTextArea textarea {
+    background: #ffffff !important;
+    color: #263449 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+}
+
+.stTextInput input:focus,
+.stTextArea textarea:focus {
+    border-color: #4776ad !important;
+    box-shadow: 0 0 0 1px #4776ad !important;
+}
+
+/* Dropdowns */
+[data-baseweb="select"] > div {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #263449 !important;
+}
+
+/* Buttons */
 div.stButton > button {
-    background: linear-gradient(90deg, #7c3aed, #c026d3);
-    color: white;
+    background: #315b91;
+    color: #ffffff !important;
     border: none;
-    border-radius: 12px;
+    border-radius: 9px;
     padding: 12px;
-    font-weight: 700;
+    font-weight: 650;
+    transition: 0.2s ease;
 }
 
 div.stButton > button:hover {
-    background: linear-gradient(90deg, #9333ea, #db2777);
-    color: white;
-    border: 1px solid #e9d5ff;
+    background: #23466f;
+    color: #ffffff !important;
+    border: none;
 }
 
+/* Prediction result */
 .result-card {
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(216, 180, 254, 0.3);
-    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid #dce3ed;
+    border-radius: 14px;
     padding: 25px;
     text-align: center;
     margin: 15px 0;
+    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
 }
 
 .fake-result {
-    color: #fda4af;
-    font-size: 30px;
+    color: #c03945;
+    font-size: 29px;
     font-weight: 800;
 }
 
 .real-result {
-    color: #86efac;
-    font-size: 30px;
+    color: #23834b;
+    font-size: 29px;
     font-weight: 800;
 }
 
+/* Feature explanation cards */
 .factor-card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(216, 180, 254, 0.2);
-    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #dce3ed;
+    border-left: 4px solid #4776ad;
+    border-radius: 10px;
     padding: 15px;
     margin-bottom: 10px;
 }
 
+/* Footer */
 .small-note {
-    color: #d8b4fe;
+    color: #64748b !important;
     text-align: center;
     font-size: 13px;
 }
 
+/* Metric values */
+[data-testid="stMetricValue"] {
+    color: #23466f !important;
+}
+
+/* Info and warning messages */
+.stAlert {
+    border-radius: 10px;
+}
+
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # --------------------------------------------------
