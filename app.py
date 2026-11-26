@@ -588,190 +588,161 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
             )
 
             # ------------------------------------------
-            # PREDICTION DASHBOARD WITH TABS
+            # AI ANALYSIS DASHBOARD
             # ------------------------------------------
 
-            overview_tab, company_tab, explanation_tab = st.tabs([
-                "📊 Overview",
-                "🏢 Company Check",
-                "🧠 AI Explanation"
-            ])
+            st.markdown("---")
+
+            st.markdown("""
+            <div style="text-align:center; padding:10px;">
+                <h2 style="color:#78DCC5;">AI Analysis Dashboard</h2>
+                <p style="color:#A9C5BD;">
+                    Job authenticity analysis and verification insights
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
 
             # ------------------------------------------
-            # TAB 1: OVERVIEW
+            # MAIN PREDICTION AREA
             # ------------------------------------------
 
-            with overview_tab:
+            result_col, real_col, fake_col = st.columns([2, 1, 1])
 
-                st.markdown("### Prediction Result")
+            with result_col:
 
                 if predicted_class == 0:
-
-                    st.markdown("""
-                    <div class="result-card">
-                        <div class="fake-result">
-                            ⚠️ FAKE JOB POSTING
-                        </div>
-                        <p>Our model classified this job as potentially fraudulent.</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-
+                    result_text = "⚠️ FAKE JOB"
+                    result_color = "#FF929B"
+                    result_description = "Potentially fraudulent posting"
                 else:
-
-                    st.markdown("""
-                    <div class="result-card">
-                        <div class="real-result">
-                            ✅ REAL JOB POSTING
-                        </div>
-                        <p>Our model classified this job as likely genuine.</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-                st.markdown("### Probability Analysis")
-
-                col1, col2 = st.columns(2)
-
-                with col1:
-                    st.metric(
-                        "Real Probability",
-                        f"{real_probability:.2f}%"
-                    )
-                    st.progress(
-                        int(round(real_probability))
-                    )
-
-                with col2:
-                    st.metric(
-                        "Fake Probability",
-                        f"{fake_probability:.2f}%"
-                    )
-                    st.progress(
-                        int(round(fake_probability))
-                    )
-
-                st.info(
-                    "Important: This is a machine learning prediction, "
-                    "not a verified investigation. Always check the "
-                    "company website, official contact details and "
-                    "job offer before sharing personal information "
-                    "or paying any fees."
-                )
-
-            # ------------------------------------------
-            # TAB 2: COMPANY CHECK
-            # ------------------------------------------
-
-            with company_tab:
-
-                st.markdown("### Company Details Check")
-
-                st.caption(
-                    "These checks validate the entered formats only. "
-                    "They do not confirm company registration or email ownership."
-                )
-
-                cin_value = st.session_state.get(
-                    "company_cin", ""
-                ).strip().upper()
-
-                email_value = st.session_state.get(
-                    "company_email", ""
-                ).strip()
-
-                check_col1, check_col2 = st.columns(2)
-
-                with check_col1:
-
-                    st.markdown("#### Company CIN")
-
-                    if not cin_value:
-                        st.info("CIN not provided.")
-
-                    elif re.fullmatch(
-                        r"[LU]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}",
-                        cin_value
-                    ):
-                        st.success(
-                            "CIN format looks valid (21 characters)."
-                        )
-
-                        st.warning(
-                            "This is only a format check. "
-                            "The CIN has not been verified against MCA records."
-                        )
-
-                    else:
-                        st.error(
-                            "CIN format is invalid. "
-                            "An Indian CIN normally contains 21 characters."
-                        )
-
-                with check_col2:
-
-                    st.markdown("#### Company Email")
-
-                    if not email_value:
-                        st.info("Company email not provided.")
-
-                    elif re.fullmatch(
-                        r"[^\s@]+@[^\s@]+\.[^\s@]+",
-                        email_value
-                    ):
-                        st.success(
-                            "Email address format looks valid."
-                        )
-
-                        email_domain = email_value.rsplit(
-                            "@", 1
-                        )[-1].lower()
-
-                        common_free_domains = {
-                            "gmail.com", "yahoo.com", "yahoo.in",
-                            "outlook.com", "hotmail.com",
-                            "live.com", "icloud.com",
-                            "rediffmail.com"
-                        }
-
-                        if email_domain in common_free_domains:
-
-                            st.warning(
-                                "This uses a common free email provider. "
-                                "It is not automatically fake, but independently "
-                                "verify the employer."
-                            )
-
-                        else:
-
-                            st.info(
-                                "A company-style domain was entered, but "
-                                "domain ownership and mailbox existence "
-                                "have not been verified."
-                            )
-
-                    else:
-
-                        st.error(
-                            "Email format is invalid. "
-                            "Please enter an address like hr@company.com."
-                        )
-
-            # ------------------------------------------
-            # TAB 3: AI EXPLANATION
-            # ------------------------------------------
-
-            with explanation_tab:
+                    result_text = "✅ REAL JOB"
+                    result_color = "#78DCC5"
+                    result_description = "Likely genuine job posting"
 
                 st.markdown(
-                    "### Why Did the Model Make This Prediction?"
+                    f"""
+                    <div style="
+                        background:#1D4148;
+                        border:1px solid #37616A;
+                        border-left:5px solid {result_color};
+                        border-radius:14px;
+                        padding:22px;
+                        min-height:125px;
+                    ">
+                        <small style="color:#A9C5BD;">
+                            JOB AUTHENTICITY RESULT
+                        </small>
+                        <h2 style="color:{result_color}; margin:10px 0;">
+                            {result_text}
+                        </h2>
+                        <p style="color:#C2DAD4;">
+                            {result_description}
+                        </p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
                 )
+
+            with real_col:
+                st.metric(
+                    "Real Probability",
+                    f"{real_probability:.2f}%"
+                )
+                st.progress(int(round(real_probability)))
+
+            with fake_col:
+                st.metric(
+                    "Fake Probability",
+                    f"{fake_probability:.2f}%"
+                )
+                st.progress(int(round(fake_probability)))
+
+            # ------------------------------------------
+            # COMPANY VERIFICATION PANEL
+            # ------------------------------------------
+
+            st.markdown("### 🏢 Company Verification")
+
+            cin_value = st.session_state.get(
+                "company_cin", ""
+            ).strip().upper()
+
+            email_value = st.session_state.get(
+                "company_email", ""
+            ).strip()
+
+            company_col1, company_col2 = st.columns(2)
+
+            with company_col1:
+
+                st.markdown("#### Registration Number (CIN)")
+
+                if not cin_value:
+                    st.info("CIN not provided.")
+
+                elif re.fullmatch(
+                    r"[LU]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}",
+                    cin_value
+                ):
+                    st.success("CIN format looks valid.")
+                    st.caption(
+                        "Format checked only. MCA registration not verified."
+                    )
+
+                else:
+                    st.error("Invalid CIN format.")
+
+            with company_col2:
+
+                st.markdown("#### Official Email")
+
+                if not email_value:
+                    st.info("Company email not provided.")
+
+                elif re.fullmatch(
+                    r"[^\s@]+@[^\s@]+\.[^\s@]+",
+                    email_value
+                ):
+                    st.success("Email format looks valid.")
+
+                    email_domain = email_value.rsplit(
+                        "@", 1
+                    )[-1].lower()
+
+                    common_free_domains = {
+                        "gmail.com", "yahoo.com", "yahoo.in",
+                        "outlook.com", "hotmail.com",
+                        "live.com", "icloud.com",
+                        "rediffmail.com"
+                    }
+
+                    if email_domain in common_free_domains:
+                        st.warning(
+                            "Free email provider. Verify the employer independently."
+                        )
+                    else:
+                        st.caption(
+                            "Domain ownership and mailbox not verified."
+                        )
+
+                else:
+                    st.error("Invalid email format.")
+
+            # ------------------------------------------
+            # AI FEATURE ANALYSIS
+            # ------------------------------------------
+
+            st.markdown("---")
+
+            with st.expander(
+                "🧠 Explore AI Prediction Explanation",
+                expanded=False
+            ):
 
                 st.write(
-                    "The following words and job details influenced "
-                    "the Logistic Regression model's prediction."
+                    "These are the words and job details that influenced "
+                    "the Logistic Regression prediction."
                 )
-
-                # Positive = Real (1)
-                # Negative = Fake (0)
 
                 if (
                     len(model.classes_) != 2
@@ -780,8 +751,8 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
                 ):
 
                     st.warning(
-                        "This explanation requires a binary model "
-                        "with target labels 0 = Fake and 1 = Real."
+                        "Explanation requires a binary model "
+                        "with labels 0 = Fake and 1 = Real."
                     )
 
                 else:
@@ -814,8 +785,7 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
 
                             factors.append({
                                 "factor": feature_names[i],
-                                "contribution": contribution,
-                                "type": "Text"
+                                "contribution": contribution
                             })
 
                     numeric_names = [
@@ -847,8 +817,7 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
                                         numeric_names[i] +
                                         " = " + value_label
                                     ),
-                                    "contribution": contribution,
-                                    "type": "Job Detail"
+                                    "contribution": contribution
                                 })
 
                     factors.sort(
@@ -858,51 +827,76 @@ if st.button("🔍 Predict Job Authenticity", use_container_width=True):
 
                     if factors:
 
-                        for factor in factors[:8]:
+                        left_col, right_col = st.columns(2)
+
+                        for index, factor in enumerate(factors[:8]):
 
                             if factor["contribution"] > 0:
-
-                                direction = "Pushes toward REAL"
+                                direction = "Towards REAL"
                                 color = "#78DCC5"
                                 symbol = "✅"
-
                             else:
-
-                                direction = "Pushes toward FAKE"
+                                direction = "Towards FAKE"
                                 color = "#FF929B"
                                 symbol = "⚠️"
 
-                            st.markdown(
-                                f"""
-                                <div class="factor-card">
-                                    <b>{symbol} {factor["factor"]}</b>
-                                    <br>
-                                    <span style="color:{color};">
-                                        {direction}
-                                    </span>
-                                    <br>
-                                    <small>
-                                        Feature contribution:
-                                        {factor["contribution"]:.5f}
-                                    </small>
-                                </div>
-                                """,
-                                unsafe_allow_html=True
+                            target_col = (
+                                left_col if index % 2 == 0
+                                else right_col
                             )
+
+                            with target_col:
+
+                                st.markdown(
+                                    f"""
+                                    <div style="
+                                        background:#1D4148;
+                                        border:1px solid #37616A;
+                                        border-radius:10px;
+                                        padding:13px;
+                                        margin-bottom:10px;
+                                    ">
+                                        <b style="color:#E7F0ED;">
+                                            {symbol} {factor["factor"]}
+                                        </b>
+                                        <p style="
+                                            color:{color};
+                                            margin:5px 0;
+                                        ">
+                                            {direction}
+                                        </p>
+                                        <small style="color:#A9C5BD;">
+                                            Contribution:
+                                            {factor["contribution"]:.5f}
+                                        </small>
+                                    </div>
+                                    """,
+                                    unsafe_allow_html=True
+                                )
 
                     else:
 
                         st.info(
-                            "The model did not find any individual "
-                            "feature contributions large enough to display."
+                            "No significant individual feature contributions found."
                         )
 
                     st.caption(
-                        "Positive contribution pushes toward Real. "
-                        "Negative contribution pushes toward Fake. "
-                        "These are model associations, not proof "
-                        "that a job is fraudulent or genuine."
+                        "Positive contribution pushes toward Real (1). "
+                        "Negative contribution pushes toward Fake (0). "
+                        "These are model associations, not proof of authenticity."
                     )
+
+            # ------------------------------------------
+            # SAFETY MESSAGE
+            # ------------------------------------------
+
+            st.info(
+                "Important: This is a machine learning prediction, "
+                "not a verified investigation. Always check the "
+                "company website, official contact details and "
+                "job offer before sharing personal information "
+                "or paying any fees."
+            )
 
 
         except Exception as e:
