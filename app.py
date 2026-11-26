@@ -6,7 +6,7 @@ from scipy.sparse import hstack, csr_matrix
 
 st.set_page_config(
     page_title="Fake Job Detection AI",
-    page_icon="🔍",
+    page_icon="🌈",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -24,66 +24,98 @@ except Exception as e:
     st.exception(e)
     st.stop()
 
-# -------------------- DESIGN --------------------
+# -------------------- AURORA DESIGN --------------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 :root {
-  --text:#f4f5ff; --muted:#aeb7d0; --violet:#a78bfa;
-  --mint:#6ee7b7; --coral:#fda4af;
+  --text:#f7f7ff; --muted:#c3c9df; --violet:#b69cff;
+  --cyan:#75e6e2; --pink:#ff9bd5; --green:#8cf0c2; --red:#ff9cae;
 }
 .stApp {
  background:
- radial-gradient(ellipse at 8% 8%,rgba(91,72,180,.36),transparent 34%),
- radial-gradient(ellipse at 92% 12%,rgba(28,153,177,.24),transparent 32%),
- radial-gradient(ellipse at 55% 100%,rgba(112,74,166,.22),transparent 38%),
- linear-gradient(135deg,#0b1020 0%,#111a31 52%,#101629 100%);
+   radial-gradient(ellipse at 5% 0%,rgba(151,91,255,.34),transparent 36%),
+   radial-gradient(ellipse at 95% 8%,rgba(51,218,211,.25),transparent 34%),
+   radial-gradient(ellipse at 55% 100%,rgba(255,105,190,.19),transparent 40%),
+   linear-gradient(135deg,#101126 0%,#171936 48%,#102c39 100%);
  color:var(--text); font-family:'DM Sans',sans-serif;
 }
-.block-container {max-width:1180px;padding-top:2rem;padding-bottom:3rem}
+.block-container {max-width:1180px;padding-top:1.7rem;padding-bottom:3rem}
 h1,h2,h3,h4,p,label,li {color:var(--text);font-family:'DM Sans',sans-serif}
 h1,h2,h3 {font-family:'Space Grotesk',sans-serif}
 [data-testid="stCaptionContainer"] p,.stCaption {color:var(--muted)!important}
-.hero,.glass-panel,.result-card {
- background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.045));
- border:1px solid rgba(255,255,255,.19); border-radius:22px;
- box-shadow:0 16px 42px rgba(0,0,0,.2);
- backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+
+.hero,.glass-panel,.result-card,.info-card {
+ background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.045));
+ border:1px solid rgba(255,255,255,.2); border-radius:24px;
+ box-shadow:0 18px 48px rgba(0,0,0,.22);
+ backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
 }
-.hero {padding:30px;margin:8px 0 24px;position:relative;overflow:hidden}
-.hero h1 {font-size:clamp(30px,4vw,44px);margin:8px 0;color:#fff}
-.hero p {color:#c5cee5}
-.eyebrow {color:#9feaf2;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.hero {
+ padding:32px;margin:8px 0 22px;position:relative;overflow:hidden;
+ background:
+   radial-gradient(ellipse at 88% 12%,rgba(104,239,226,.18),transparent 38%),
+   radial-gradient(ellipse at 10% 100%,rgba(190,119,255,.22),transparent 42%),
+   linear-gradient(120deg,rgba(255,255,255,.15),rgba(255,255,255,.045));
+}
+.hero h1 {font-size:clamp(31px,4vw,46px);margin:9px 0;color:#fff;letter-spacing:-1.4px}
+.hero p {color:#d4d9ed;margin-bottom:5px}
+.eyebrow {color:#a8f4ed;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
 .glass-panel {padding:22px;margin:12px 0}
 .section-heading {font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff}
 .section-subtitle {color:var(--muted);font-size:13px;margin:4px 0 12px}
 .stTextInput input,.stTextArea textarea {
- background:rgba(255,255,255,.09)!important;color:#fff!important;
- border:1px solid rgba(255,255,255,.2)!important;border-radius:12px!important
+ background:rgba(255,255,255,.085)!important;color:#fff!important;
+ border:1px solid rgba(197,205,255,.24)!important;border-radius:13px!important;
 }
-.stTextInput input::placeholder,.stTextArea textarea::placeholder {color:#9ca8c4!important}
-[data-baseweb="select"]>div {background:rgba(255,255,255,.09)!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:12px!important}
+.stTextInput input:focus,.stTextArea textarea:focus {
+ border-color:#9beee8!important;box-shadow:0 0 0 1px #9beee8!important;
+}
+.stTextInput input::placeholder,.stTextArea textarea::placeholder {color:#aeb7d0!important}
+[data-baseweb="select"]>div {
+ background:rgba(255,255,255,.09)!important;border:1px solid rgba(197,205,255,.24)!important;border-radius:13px!important;
+}
 [data-baseweb="select"] * {color:#fff!important}
-[data-baseweb="popover"],[data-baseweb="menu"] {background:#202943!important}
+[data-baseweb="popover"],[data-baseweb="menu"] {background:#252747!important}
 div.stButton>button {
- background:linear-gradient(105deg,#8b5cf6,#4f9de8);color:#fff!important;
- border:1px solid rgba(255,255,255,.2);border-radius:13px;min-height:48px;
- font-weight:800;box-shadow:0 8px 24px rgba(105,91,220,.28)
+ background:linear-gradient(105deg,#9b70ff 0%,#5f9df6 48%,#47d8cb 100%);
+ color:#10152b!important;border:1px solid rgba(255,255,255,.35);
+ border-radius:14px;min-height:49px;font-weight:800;
+ box-shadow:0 9px 28px rgba(117,112,255,.28);transition:all .2s ease;
 }
-div.stButton>button:hover {transform:translateY(-2px);border-color:rgba(255,255,255,.45)}
-.result-card {padding:26px;min-height:155px}
-.fake-result {color:#fda4af;font:800 32px 'Space Grotesk',sans-serif}
-.real-result {color:#6ee7b7;font:800 32px 'Space Grotesk',sans-serif}
-[data-testid="stMetric"] {background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px}
-[data-testid="stMetricLabel"] {color:#c4cce0!important}
+div.stButton>button:hover {transform:translateY(-2px);box-shadow:0 13px 32px rgba(95,205,220,.25);border-color:#fff}
+.result-card {padding:25px;min-height:180px}
+.result-card.real {border-color:rgba(104,241,190,.55);background:linear-gradient(135deg,rgba(54,203,151,.2),rgba(255,255,255,.055))}
+.result-card.fake {border-color:rgba(255,126,160,.58);background:linear-gradient(135deg,rgba(255,89,139,.2),rgba(255,255,255,.055))}
+.result-emoji {font-size:43px;line-height:1.2;margin:8px 0}
+.real-result {color:#9af4c9;font:800 clamp(25px,3vw,34px) 'Space Grotesk',sans-serif}
+.fake-result {color:#ffafc0;font:800 clamp(25px,3vw,34px) 'Space Grotesk',sans-serif}
+.result-description {color:#e0e5f5!important;font-size:14px;margin-top:8px}
+[data-testid="stMetric"] {
+ background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.16);
+ border-radius:17px;padding:15px;
+}
+[data-testid="stMetricLabel"] {color:#d0d5e9!important}
 [data-testid="stMetricValue"] {color:#fff!important;font-family:'Space Grotesk',sans-serif}
-.stProgress>div>div>div {background:linear-gradient(90deg,#8b5cf6,#67e8f9);border-radius:20px}
-.factor-card {background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.15);border-left:4px solid #a78bfa;border-radius:14px;padding:15px;margin-bottom:10px}
-[data-testid="stExpander"] {background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.16);border-radius:16px}
-.stAlert {border-radius:14px}
-hr {border-color:rgba(255,255,255,.13)}
-.small-note {color:#9da9c5!important;text-align:center;font-size:12px;line-height:1.8}
-@media(max-width:700px){.block-container{padding:1rem}.hero{padding:22px}.glass-panel{padding:16px}}
+.stProgress>div>div>div {background:linear-gradient(90deg,#a77cff,#66e9db);border-radius:20px}
+.factor-card {
+ background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.15);
+ border-left:4px solid #a78bfa;border-radius:15px;padding:15px;margin-bottom:10px;
+}
+[data-testid="stExpander"] {background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.17);border-radius:16px}
+.stAlert {border-radius:15px}
+hr {border-color:rgba(255,255,255,.15)}
+.small-note {color:#b6bfd9!important;text-align:center;font-size:12px;line-height:1.9}
+.pill {
+ display:inline-block;padding:6px 11px;border-radius:99px;
+ background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+ color:#e8eaff;font-size:11px;font-weight:700;letter-spacing:.4px;
+}
+@media(max-width:700px) {
+ .block-container{padding:1rem}.hero{padding:22px}.glass-panel{padding:16px}
+ .result-card{padding:19px}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -250,27 +282,27 @@ def run_prediction():
 def footer():
     st.markdown("---")
     st.markdown("""
-    <p class="small-note">FAKE JOB DETECTION AI<br>
+    <p class="small-note">🌈 FAKE JOB DETECTION AI<br>
     Built with Python • Streamlit • TF-IDF • Logistic Regression<br>
-    Machine Learning Project</p>
+    ✨ Machine Learning Project</p>
     """, unsafe_allow_html=True)
 
 # -------------------- PAGE 1: INPUT --------------------
 if st.session_state.page == "input":
     st.markdown("""
     <div class="hero">
-      <div class="eyebrow">AI-powered recruitment safety · Step 1 of 2</div>
-      <h1>Fake Job Detection AI</h1>
-      <p>Enter a job posting and let the model analyse its authenticity.</p>
-      <p>Powered by TF-IDF and Logistic Regression</p>
+      <div class="eyebrow">🌌 AURORA AI • RECRUITMENT SAFETY • STEP 1 OF 2</div>
+      <h1>🌈 Fake Job Detection AI</h1>
+      <p>Check a job posting with an AI-powered text analysis model.</p>
+      <span class="pill">✨ TF-IDF</span> <span class="pill">🧠 Logistic Regression</span> <span class="pill">🛡️ Job Safety</span>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="glass-panel">
-      <div class="eyebrow">Quick start</div>
+      <div class="eyebrow">⚡ QUICK START</div>
       <div class="section-heading">Try a suggested job</div>
-      <div class="section-subtitle">Choose a sample profile to automatically fill the fields, or enter your own details.</div>
+      <div class="section-subtitle">Choose a sample profile to fill the form automatically, or enter your own job details.</div>
     </div>
     """, unsafe_allow_html=True)
     st.selectbox("Choose a sample job profile", ["Choose a sample..."] + list(samples.keys()),
@@ -278,24 +310,24 @@ if st.session_state.page == "input":
 
     st.markdown("""
     <div class="glass-panel">
-      <div class="eyebrow">Job information</div>
+      <div class="eyebrow">📝 JOB INFORMATION</div>
       <div class="section-heading">Enter job details</div>
-      <div class="section-subtitle">Fields marked as required must be completed before prediction.</div>
+      <div class="section-subtitle">Complete the required fields marked with an asterisk.</div>
     </div>
     """, unsafe_allow_html=True)
 
     col1, col2 = st.columns(2, gap="large")
     with col1:
-        st.text_input("Job Title *", key="title", placeholder="e.g. Software Developer")
-        st.text_area("Company Profile", key="company_profile", height=125, placeholder="Describe the company and its work...")
-        st.text_area("Job Description *", key="description", height=180, placeholder="Paste the complete job description...")
+        st.text_input("💼 Job Title *", key="title", placeholder="e.g. Software Developer")
+        st.text_area("🏢 Company Profile", key="company_profile", height=125, placeholder="Describe the company and its work...")
+        st.text_area("📄 Job Description *", key="description", height=180, placeholder="Paste the complete job description...")
     with col2:
-        st.text_area("Requirements", key="requirements", height=125, placeholder="Skills, education and experience required...")
-        st.text_area("Benefits", key="benefits", height=125, placeholder="Salary, benefits and other facilities...")
-        st.markdown("#### Additional job information")
-        st.selectbox("Does the company allow telecommuting?", ["No", "Yes"], key="telecommuting")
-        st.selectbox("Does the company have a logo?", ["No", "Yes"], key="has_company_logo")
-        st.selectbox("Does the job posting have screening questions?", ["No", "Yes"], key="has_questions")
+        st.text_area("🎯 Requirements", key="requirements", height=125, placeholder="Skills, education and experience required...")
+        st.text_area("🎁 Benefits", key="benefits", height=125, placeholder="Salary, benefits and other facilities...")
+        st.markdown("#### ⚙️ Additional job information")
+        st.selectbox("🏠 Does the company allow telecommuting?", ["No", "Yes"], key="telecommuting")
+        st.selectbox("🖼️ Does the company have a logo?", ["No", "Yes"], key="has_company_logo")
+        st.selectbox("❓ Does the job posting have screening questions?", ["No", "Yes"], key="has_questions")
 
     with st.expander("🏢 Add optional company details", expanded=False):
         c1, c2 = st.columns(2)
@@ -307,18 +339,18 @@ if st.session_state.page == "input":
 
     st.markdown("""
     <div class="glass-panel" style="text-align:center">
-      <div class="eyebrow">Ready for analysis?</div>
-      <div class="section-heading">Check job authenticity</div>
+      <div class="eyebrow">🔮 READY FOR ANALYSIS?</div>
+      <div class="section-heading">Let's check this job</div>
       <div class="section-subtitle">Your prediction will open on a separate result screen.</div>
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🔍  Predict Job", use_container_width=True):
+    if st.button("🚀  Analyse Job Posting", use_container_width=True):
         if not st.session_state.title.strip() or not st.session_state.description.strip():
-            st.warning("Please enter at least the Job Title and Job Description.")
+            st.warning("⚠️ Please enter at least the Job Title and Job Description.")
         else:
             try:
-                with st.spinner("Analysing job posting..."):
+                with st.spinner("🔮 Analysing job posting..."):
                     run_prediction()
                 st.rerun()
             except Exception as e:
@@ -342,42 +374,47 @@ else:
 
     st.markdown("""
     <div class="hero">
-      <div class="eyebrow">Analysis complete · Step 2 of 2</div>
-      <h1>Your Job Analysis</h1>
-      <p>The model has analysed the information you submitted. Review the result below.</p>
+      <div class="eyebrow">✨ ANALYSIS COMPLETE • STEP 2 OF 2</div>
+      <h1>🔮 Your Job Analysis</h1>
+      <p>Your AI report is ready. Review the prediction and safety checks below.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("← Back to Edit Details", use_container_width=False):
+    if st.button("⬅️  Back to Edit Details", use_container_width=False):
         st.session_state.page = "input"
         st.rerun()
 
     result_col, real_col, fake_col = st.columns([2, 1, 1], gap="medium")
     if predicted_class == 0:
-        result_text = "⚠️ FAKE JOB"
-        result_description = "The model classified this posting as potentially fraudulent."
+        result_text = "🚨 FAKE JOB"
+        result_emoji = "🛑"
+        result_description = "The model classified this posting as potentially fraudulent. Verify the employer carefully."
         result_class = "fake-result"
+        card_class = "fake"
     else:
-        result_text = "✓ REAL JOB"
-        result_description = "The model classified this posting as likely genuine."
+        result_text = "🛡️ REAL JOB"
+        result_emoji = "🌿"
+        result_description = "The model classified this posting as likely genuine. Still verify the employer independently."
         result_class = "real-result"
+        card_class = "real"
 
     with result_col:
         st.markdown(f"""
-        <div class="result-card">
-          <div class="eyebrow">Job authenticity result</div>
-          <div class="{result_class}" style="margin:12px 0">{result_text}</div>
-          <p style="color:#c5cee5">{result_description}</p>
+        <div class="result-card {card_class}">
+          <div class="eyebrow">🎯 JOB AUTHENTICITY RESULT</div>
+          <div class="result-emoji">{result_emoji}</div>
+          <div class="{result_class}">{result_text}</div>
+          <p class="result-description">{result_description}</p>
         </div>
         """, unsafe_allow_html=True)
     with real_col:
-        st.metric("Real Probability", f"{real_probability:.2f}%")
+        st.metric("🛡️ Real Probability", f"{real_probability:.2f}%")
         st.progress(int(round(real_probability)))
     with fake_col:
-        st.metric("Fake Probability", f"{fake_probability:.2f}%")
+        st.metric("🚨 Fake Probability", f"{fake_probability:.2f}%")
         st.progress(int(round(fake_probability)))
 
-    st.markdown("### 🏢 Company details check")
+    st.markdown("### 🧾 Company details check")
     st.caption("These checks validate the entered formats only. They do not confirm company registration or email ownership.")
     cin_value = st.session_state.company_cin.strip().upper()
     email_value = st.session_state.company_email.strip()
@@ -385,34 +422,34 @@ else:
 
     with company_col1:
         with st.container(border=True):
-            st.markdown("#### Company CIN")
+            st.markdown("#### 🏢 Company CIN")
             if not cin_value:
-                st.info("CIN not provided.")
-            elif re.fullmatch(r"[LU]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}", cin_value):
-                st.success("CIN format looks valid (21 characters).")
+                st.info("ℹ️ CIN not provided.")
+            elif re.fullmatch(r"[LU]\\d{5}[A-Z]{2}\\d{4}[A-Z]{3}\\d{6}", cin_value):
+                st.success("✅ CIN format looks valid (21 characters).")
                 st.caption("Format check only. MCA registration has not been verified.")
             else:
-                st.error("CIN format is invalid. An Indian CIN normally contains 21 characters.")
+                st.error("❌ CIN format is invalid. An Indian CIN normally contains 21 characters.")
 
     with company_col2:
         with st.container(border=True):
-            st.markdown("#### Company email")
+            st.markdown("#### 📧 Company email")
             if not email_value:
-                st.info("Company email not provided.")
-            elif re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email_value):
-                st.success("Email address format looks valid.")
+                st.info("ℹ️ Company email not provided.")
+            elif re.fullmatch(r"[^\\s@]+@[^\\s@]+\\.[^\\s@]+", email_value):
+                st.success("✅ Email address format looks valid.")
                 email_domain = email_value.rsplit("@", 1)[-1].lower()
                 free_domains = {"gmail.com", "yahoo.com", "yahoo.in", "outlook.com",
                                 "hotmail.com", "live.com", "icloud.com", "rediffmail.com"}
                 if email_domain in free_domains:
-                    st.warning("This uses a common free email provider. It is not automatically fake, but independently verify the employer.")
+                    st.warning("⚠️ This uses a common free email provider. It is not automatically fake, but independently verify the employer.")
                 else:
                     st.caption("Company-style domain entered; domain ownership and mailbox existence are not verified.")
             else:
-                st.error("Email format is invalid. Enter an address like hr@company.com.")
+                st.error("❌ Email format is invalid. Enter an address like hr@company.com.")
 
     with st.expander("🧠 Explore AI prediction explanation", expanded=False):
-        st.write("These words and job details influenced the Logistic Regression model's prediction.")
+        st.write("🔍 These words and job details influenced the Logistic Regression model's prediction.")
         feature_names = vectorizer.get_feature_names_out()
         coefficients = model.coef_[0]
         text_coefficients = coefficients[:len(feature_names)]
@@ -439,20 +476,20 @@ else:
             for index, factor in enumerate(factors[:8]):
                 positive = factor["contribution"] > 0
                 direction = "Pushes toward REAL" if positive else "Pushes toward FAKE"
-                color = "#6ee7b7" if positive else "#fda4af"
-                symbol = "✓" if positive else "⚠"
+                color = "#9af4c9" if positive else "#ffafc0"
+                symbol = "🟢" if positive else "🔴"
                 target = left_col if index % 2 == 0 else right_col
                 with target:
                     st.markdown(f"""
                     <div class="factor-card">
-                      <b style="color:#f4f5ff">{symbol} {factor['factor']}</b>
+                      <b style="color:#f7f7ff">{symbol} {factor['factor']}</b>
                       <p style="color:{color};margin:6px 0">{direction}</p>
-                      <small style="color:#aeb7d0">Contribution: {factor['contribution']:.5f}</small>
+                      <small style="color:#c3c9df">Contribution: {factor['contribution']:.5f}</small>
                     </div>
                     """, unsafe_allow_html=True)
         else:
-            st.info("The model did not find individual feature contributions large enough to display.")
+            st.info("ℹ️ The model did not find individual feature contributions large enough to display.")
         st.caption("Positive contribution pushes toward Real (1). Negative contribution pushes toward Fake (0). These are model associations, not proof of authenticity.")
 
-    st.info("Important: This is a machine learning prediction, not a verified investigation. Always check the company website, official contact details and job offer before sharing personal information or paying any fees.")
+    st.warning("⚠️ This is a machine learning prediction, not a verified investigation. Always check the company's official website, contact details and job offer before sharing personal information or paying any fees.")
     footer()
