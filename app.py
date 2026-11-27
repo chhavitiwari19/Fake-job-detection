@@ -58,7 +58,6 @@ st.markdown("""
         radial-gradient(ellipse at 5% 0%, #F0E4D5 0%, transparent 35%),
         radial-gradient(ellipse at 95% 100%, #EEDFE0 0%, transparent 38%),
         linear-gradient(135deg, #FAF7F0, #F6F0E9);
-
     color: var(--ink);
     font-family: 'DM Sans', sans-serif;
 }
@@ -83,18 +82,15 @@ h1, h2 {
 }
 
 /* HEADER */
-
 .hero {
     position: relative;
     overflow: hidden;
     padding: 42px;
     margin: 10px 0 25px;
     border-radius: 25px;
-
     background:
         radial-gradient(circle at 90% 10%, rgba(185,149,91,.20), transparent 35%),
         linear-gradient(120deg, #4D192B, #70283D 65%, #913C53);
-
     border: 1px solid rgba(185,149,91,.45);
     box-shadow: 0 18px 40px rgba(77,25,43,.15);
 }
@@ -133,7 +129,6 @@ h1, h2 {
 }
 
 /* PANELS */
-
 .panel {
     background: rgba(255,253,249,.92);
     border: 1px solid #E9DFD1;
@@ -165,7 +160,6 @@ h1, h2 {
 }
 
 /* INPUT FIELDS */
-
 .stTextInput input,
 .stTextArea textarea {
     background: #FFFDF9 !important;
@@ -201,7 +195,6 @@ h1, h2 {
 }
 
 /* BUTTONS */
-
 div.stButton > button {
     background: linear-gradient(110deg, #70283D, #913C53);
     color: #FFF9F0 !important;
@@ -222,7 +215,6 @@ div.stButton > button:hover {
 }
 
 /* RESULT CARDS */
-
 .result-card {
     background: #FFFDF9;
     border: 1px solid #E8DCCB;
@@ -264,7 +256,6 @@ div.stButton > button:hover {
 }
 
 /* METRICS */
-
 [data-testid="stMetric"] {
     background: #FFFDF9;
     border: 1px solid #E8DCCB;
@@ -283,14 +274,12 @@ div.stButton > button:hover {
 }
 
 /* PROGRESS */
-
 .stProgress > div > div > div {
     background: linear-gradient(90deg, #70283D, #B9955B);
     border-radius: 20px;
 }
 
 /* EXPLANATION */
-
 .factor-card {
     background: #FFFDF9;
     border: 1px solid #E9DFD1;
@@ -319,13 +308,11 @@ div.stButton > button:hover {
 }
 
 /* ALERTS */
-
 .stAlert {
     border-radius: 14px;
 }
 
 /* FOOTER */
-
 .footer {
     text-align: center;
     color: #8B7C7F;
@@ -340,7 +327,6 @@ div.stButton > button:hover {
 }
 
 /* SAMPLE LABEL */
-
 .sample-label {
     color: #70283D;
     font-weight: 800;
@@ -349,20 +335,16 @@ div.stButton > button:hover {
 }
 
 /* MOBILE */
-
 @media(max-width:700px) {
     .block-container {
         padding: 1rem;
     }
-
     .hero {
         padding: 23px;
     }
-
     .panel {
         padding: 16px;
     }
-
     .result-card {
         padding: 19px;
     }
@@ -387,7 +369,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Python Developer": {
         "title": "Python Developer",
         "company_profile": "Our company provides software development and technology services.",
@@ -398,7 +379,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Data Analyst": {
         "title": "Data Analyst",
         "company_profile": "We are a data analytics company helping businesses make better decisions.",
@@ -409,7 +389,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Web Developer": {
         "title": "Web Developer",
         "company_profile": "We create modern websites and digital solutions for clients.",
@@ -420,7 +399,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "IT Support": {
         "title": "IT Support Executive",
         "company_profile": "We provide IT support and technical services to business customers.",
@@ -431,7 +409,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Marketing Assistant": {
         "title": "Marketing Assistant",
         "company_profile": "We are a growing marketing company working with different business clients.",
@@ -442,7 +419,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "HR Executive": {
         "title": "HR Executive",
         "company_profile": "Our organization provides professional business services.",
@@ -453,7 +429,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Sales Executive": {
         "title": "Sales Executive",
         "company_profile": "We are a company offering products and services to business customers.",
@@ -464,7 +439,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Accountant": {
         "title": "Accountant",
         "company_profile": "We provide accounting and financial services to clients.",
@@ -475,7 +449,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Business Analyst": {
         "title": "Business Analyst",
         "company_profile": "We help organizations improve their business processes using data.",
@@ -486,7 +459,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Content Writer": {
         "title": "Content Writer",
         "company_profile": "We are a digital media company creating online content.",
@@ -497,7 +469,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Graphic Designer": {
         "title": "Graphic Designer",
         "company_profile": "Our creative agency provides branding and design services.",
@@ -508,7 +479,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Customer Support": {
         "title": "Customer Support Executive",
         "company_profile": "We provide customer service solutions to businesses.",
@@ -519,7 +489,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Digital Marketing": {
         "title": "Digital Marketing Executive",
         "company_profile": "We help brands grow through online marketing strategies.",
@@ -530,7 +499,6 @@ samples = {
         "has_company_logo": "Yes",
         "has_questions": "Yes"
     },
-
     "Data Entry Work From Home": {
         "title": "Data Entry Work From Home",
         "company_profile": "We are seeking support for data processing and record management.",
@@ -571,7 +539,6 @@ for key, value in defaults.items():
 
 def load_sample():
     chosen = st.session_state.sample_choice
-
     if chosen in samples:
         for key, value in samples[chosen].items():
             st.session_state[key] = value
@@ -582,7 +549,6 @@ def load_sample():
 # --------------------------------------------------
 
 def run_prediction():
-
     combined_text = " ".join([
         st.session_state.title,
         st.session_state.company_profile,
@@ -605,32 +571,22 @@ def run_prediction():
     ]).tocsr()
 
     if final_data.shape[1] != model.coef_.shape[1]:
-        raise ValueError(
-            "Model feature count does not match app inputs."
-        )
+        raise ValueError("Model feature count does not match app inputs.")
 
     predicted_class = int(model.predict(final_data)[0])
-
     probabilities = model.predict_proba(final_data)[0]
     classes = list(model.classes_)
 
     if 0 not in classes or 1 not in classes:
-        raise ValueError(
-            "The saved model must use labels 0 = Fake and 1 = Real."
-        )
+        raise ValueError("The saved model must use labels 0 = Fake and 1 = Real.")
 
     st.session_state.prediction = {
         "predicted_class": predicted_class,
-        "fake_probability": float(
-            probabilities[classes.index(0)] * 100
-        ),
-        "real_probability": float(
-            probabilities[classes.index(1)] * 100
-        ),
+        "fake_probability": float(probabilities[classes.index(0)] * 100),
+        "real_probability": float(probabilities[classes.index(1)] * 100),
         "text_data": text_data,
         "numeric_data": numeric_data
     }
-
     st.session_state.page = "result"
 
 
@@ -639,7 +595,6 @@ def run_prediction():
 # --------------------------------------------------
 
 def footer():
-
     st.markdown("""
     <div class="footer">
         <strong>ROYAL ELEGANCE • FAKE JOB DETECTION AI</strong><br>
@@ -654,22 +609,16 @@ def footer():
 # --------------------------------------------------
 
 def header(step, title, subtitle):
-
     st.markdown(f"""
     <div class="hero">
-
         <div class="eyebrow">
             🛡️ ROYAL ELEGANCE • RECRUITMENT SECURITY • {step}
         </div>
-
         <h1>{title}</h1>
-
         <p>{subtitle}</p>
-
         <span class="hero-badge">✦ AI POWERED</span>
         <span class="hero-badge">✦ JOB SAFETY</span>
         <span class="hero-badge">✦ SMART ANALYSIS</span>
-
     </div>
     """, unsafe_allow_html=True)
 
@@ -679,31 +628,21 @@ def header(step, title, subtitle):
 # --------------------------------------------------
 
 if st.session_state.page == "input":
-
     header(
         "01 / 02",
         "Fake Job Detection AI",
         "An intelligent way to examine job postings and identify potential recruitment risks."
     )
 
-    # QUICK START
-
     st.markdown("""
     <div class="panel">
-
         <div class="eyebrow">01 • QUICK START</div>
-
-        <div class="section-heading">
-            Explore a job profile
-        </div>
-
+        <div class="section-heading">Explore a job profile</div>
         <div class="gold-line"></div>
-
         <div class="section-subtitle">
             Select a sample job to automatically fill the form,
             or enter your own job information.
         </div>
-
     </div>
     """, unsafe_allow_html=True)
 
@@ -714,44 +653,32 @@ if st.session_state.page == "input":
         on_change=load_sample
     )
 
-    # JOB INFORMATION
-
     st.markdown("""
     <div class="panel">
-
         <div class="eyebrow">02 • JOB INFORMATION</div>
-
-        <div class="section-heading">
-            Job posting details
-        </div>
-
+        <div class="section-heading">Job posting details</div>
         <div class="gold-line"></div>
-
         <div class="section-subtitle">
             Provide the information available in the job advertisement.
             Fields marked with * are required.
         </div>
-
     </div>
     """, unsafe_allow_html=True)
 
     col1, col2 = st.columns(2, gap="large")
 
     with col1:
-
         st.text_input(
             "💼 Job Title *",
             key="title",
             placeholder="e.g. Software Developer"
         )
-
         st.text_area(
             "🏢 Company Profile",
             key="company_profile",
             height=135,
             placeholder="Describe the company and its activities..."
         )
-
         st.text_area(
             "📄 Job Description *",
             key="description",
@@ -760,116 +687,67 @@ if st.session_state.page == "input":
         )
 
     with col2:
-
         st.text_area(
             "🎯 Requirements",
             key="requirements",
             height=135,
             placeholder="Skills, education and experience..."
         )
-
         st.text_area(
             "🎁 Benefits",
             key="benefits",
             height=135,
             placeholder="Salary, facilities and other benefits..."
         )
-
         st.markdown("""
-        <div class="section-heading">
-            Additional information
-        </div>
+        <div class="section-heading">Additional information</div>
         """, unsafe_allow_html=True)
-
-        st.selectbox(
-            "🏠 Telecommuting",
-            ["No", "Yes"],
-            key="telecommuting"
-        )
-
-        st.selectbox(
-            "🖼️ Company logo available?",
-            ["No", "Yes"],
-            key="has_company_logo"
-        )
-
-        st.selectbox(
-            "❓ Screening questions available?",
-            ["No", "Yes"],
-            key="has_questions"
-        )
-
-    # COMPANY DETAILS
+        st.selectbox("🏠 Telecommuting", ["No", "Yes"], key="telecommuting")
+        st.selectbox("🖼️ Company logo available?", ["No", "Yes"], key="has_company_logo")
+        st.selectbox("❓ Screening questions available?", ["No", "Yes"], key="has_questions")
 
     with st.expander("🏛️ Optional company verification details"):
-
         c1, c2 = st.columns(2)
-
         with c1:
             st.text_input(
                 "Company Registration Number (CIN)",
                 key="company_cin",
                 placeholder="Enter 21-character CIN"
             )
-
         with c2:
             st.text_input(
                 "Company Official Email",
                 key="company_email",
                 placeholder="hr@companyname.com"
             )
-
         st.caption(
             "These fields perform format checks only. "
             "They are not included in the machine learning prediction."
         )
 
-    # ANALYSE SECTION
-
     st.markdown("""
     <div class="panel" style="text-align:center">
-
         <div class="eyebrow">03 • SECURITY ANALYSIS</div>
-
-        <div class="section-heading">
-            Ready to examine this opportunity?
-        </div>
-
+        <div class="section-heading">Ready to examine this opportunity?</div>
         <div class="gold-line" style="margin:12px auto"></div>
-
         <div class="section-subtitle">
             Your AI-generated prediction will appear on a separate report screen.
         </div>
-
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button(
-        "🛡️  Analyse Job Posting",
-        use_container_width=True
-    ):
-
+    if st.button("🛡️  Analyse Job Posting", use_container_width=True):
         if (
             not st.session_state.title.strip()
             or not st.session_state.description.strip()
         ):
-
-            st.warning(
-                "Please enter both Job Title and Job Description."
-            )
-
+            st.warning("Please enter both Job Title and Job Description.")
         else:
-
             try:
-
                 with st.spinner("Examining job posting..."):
-
                     run_prediction()
-
                 st.rerun()
-
             except Exception as e:
-
                 st.error("Prediction could not be completed.")
                 st.exception(e)
 
@@ -881,7 +759,6 @@ if st.session_state.page == "input":
 # --------------------------------------------------
 
 else:
-
     result = st.session_state.prediction
 
     if result is None:
@@ -891,7 +768,6 @@ else:
     predicted_class = result["predicted_class"]
     fake_probability = result["fake_probability"]
     real_probability = result["real_probability"]
-
     text_data = result["text_data"]
     numeric_data = result["numeric_data"]
 
@@ -902,327 +778,173 @@ else:
     )
 
     if st.button("← Back to Edit Job Details"):
-
         st.session_state.page = "input"
         st.rerun()
 
-    # PREDICTION RESULT
-
     if predicted_class == 0:
-
         result_text = "FAKE JOB"
         result_emoji = "🚨"
-
         result_description = (
             "The model classified this posting as potentially fraudulent. "
             "Verify the employer carefully before proceeding."
         )
-
         result_class = "fake-result"
         card_class = "fake"
-
     else:
-
         result_text = "REAL JOB"
         result_emoji = "🛡️"
-
         result_description = (
             "The model classified this posting as likely genuine. "
             "Independent verification is still important."
         )
-
         result_class = "real-result"
         card_class = "real"
 
-    result_col, real_col, fake_col = st.columns(
-        [2, 1, 1],
-        gap="medium"
-    )
+    result_col, real_col, fake_col = st.columns([2, 1, 1], gap="medium")
 
     with result_col:
-
         st.markdown(f"""
         <div class="result-card {card_class}">
-
-            <div class="eyebrow">
-                JOB AUTHENTICITY ASSESSMENT
-            </div>
-
-            <div class="result-emoji">
-                {result_emoji}
-            </div>
-
-            <div class="{result_class}">
-                {result_text}
-            </div>
-
-            <p class="result-description">
-                {result_description}
-            </p>
-
+            <div class="eyebrow">JOB AUTHENTICITY ASSESSMENT</div>
+            <div class="result-emoji">{result_emoji}</div>
+            <div class="{result_class}">{result_text}</div>
+            <p class="result-description">{result_description}</p>
         </div>
         """, unsafe_allow_html=True)
 
     with real_col:
-
-        st.metric(
-            "🛡️ Real Probability",
-            f"{real_probability:.2f}%"
-        )
-
-        st.progress(
-            int(round(real_probability))
-        )
+        st.metric("🛡️ Real Probability", f"{real_probability:.2f}%")
+        st.progress(int(round(real_probability)))
 
     with fake_col:
-
-        st.metric(
-            "🚨 Fake Probability",
-            f"{fake_probability:.2f}%"
-        )
-
-        st.progress(
-            int(round(fake_probability))
-        )
-
-    # RISK INDICATOR
+        st.metric("🚨 Fake Probability", f"{fake_probability:.2f}%")
+        st.progress(int(round(fake_probability)))
 
     st.markdown("""
     <div class="panel">
-
         <div class="eyebrow">ASSESSMENT SUMMARY</div>
-
-        <div class="section-heading">
-            Prediction overview
-        </div>
-
+        <div class="section-heading">Prediction overview</div>
         <div class="gold-line"></div>
-
     </div>
     """, unsafe_allow_html=True)
 
     if predicted_class == 0:
-
         st.error(
             "High concern: The model predicts this posting as FAKE. "
             "Do not pay fees or share sensitive documents without verification."
         )
-
     else:
-
         st.success(
             "The model predicts this posting as REAL. "
             "This is not a guarantee of authenticity; verify the employer independently."
         )
 
-    # COMPANY CHECKS
-
     st.markdown("""
     <div class="panel">
-
         <div class="eyebrow">COMPANY INFORMATION</div>
-
-        <div class="section-heading">
-            Company details review
-        </div>
-
+        <div class="section-heading">Company details review</div>
         <div class="gold-line"></div>
-
         <div class="section-subtitle">
             Check the format of the supplied company information.
         </div>
-
     </div>
     """, unsafe_allow_html=True)
 
     cin_value = st.session_state.company_cin.strip().upper()
     email_value = st.session_state.company_email.strip()
-
     company_col1, company_col2 = st.columns(2, gap="large")
 
     with company_col1:
-
         with st.container(border=True):
-
             st.markdown("#### 🏛️ Company CIN")
-
             if not cin_value:
-
                 st.info("CIN was not provided.")
-
-            elif re.fullmatch(
-                r"[LU]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}",
-                cin_value
-            ):
-
+            elif re.fullmatch(r"[LU]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}", cin_value):
                 st.success("CIN format looks valid.")
-
-                st.caption(
-                    "Format check only. MCA registration has not been verified."
-                )
-
+                st.caption("Format check only. MCA registration has not been verified.")
             else:
-
-                st.error(
-                    "Invalid CIN format. An Indian CIN normally contains 21 characters."
-                )
+                st.error("Invalid CIN format. An Indian CIN normally contains 21 characters.")
 
     with company_col2:
-
         with st.container(border=True):
-
             st.markdown("#### 📧 Company Email")
-
             if not email_value:
-
                 st.info("Company email was not provided.")
-
-            elif re.fullmatch(
-                r"[^\s@]+@[^\s@]+\.[^\s@]+",
-                email_value
-            ):
-
+            elif re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email_value):
                 st.success("Email address format looks valid.")
-
                 email_domain = email_value.rsplit("@", 1)[-1].lower()
-
                 free_domains = {
-                    "gmail.com",
-                    "yahoo.com",
-                    "yahoo.in",
-                    "outlook.com",
-                    "hotmail.com",
-                    "live.com",
-                    "icloud.com",
-                    "rediffmail.com"
+                    "gmail.com", "yahoo.com", "yahoo.in", "outlook.com",
+                    "hotmail.com", "live.com", "icloud.com", "rediffmail.com"
                 }
-
                 if email_domain in free_domains:
-
                     st.warning(
                         "This uses a common free email provider. "
                         "It is not automatically fake, but independently verify the employer."
                     )
-
                 else:
-
                     st.caption(
                         "Company-style domain entered. "
                         "Domain ownership and mailbox existence are not verified."
                     )
-
             else:
+                st.error("Invalid email format. Example: hr@company.com")
 
-                st.error(
-                    "Invalid email format. Example: hr@company.com"
-                )
-
-    # AI EXPLANATION
-
-    with st.expander(
-        "🧠 Explore AI Prediction Explanation",
-        expanded=False
-    ):
-
+    with st.expander("🧠 Explore AI Prediction Explanation", expanded=False):
         st.write(
             "The following words and job features contributed to the model's prediction."
         )
 
         feature_names = vectorizer.get_feature_names_out()
-
         coefficients = model.coef_[0]
-
         text_coefficients = coefficients[:len(feature_names)]
-
         numeric_coefficients = coefficients[len(feature_names):]
-
         text_values = text_data.toarray()[0]
-
         word_contributions = text_values * text_coefficients
-
         factors = []
 
         for i, contribution in enumerate(word_contributions):
-
             if abs(contribution) > 0.000001:
-
                 factors.append({
                     "factor": feature_names[i],
                     "contribution": float(contribution)
                 })
 
-        numeric_names = [
-            "Telecommuting",
-            "Company Logo",
-            "Screening Questions"
-        ]
-
+        numeric_names = ["Telecommuting", "Company Logo", "Screening Questions"]
         for i in range(min(3, len(numeric_coefficients))):
-
-            contribution = (
-                numeric_data[0][i] * numeric_coefficients[i]
-            )
-
+            contribution = numeric_data[0][i] * numeric_coefficients[i]
             if abs(contribution) > 0.000001:
-
-                value_label = (
-                    "Yes" if numeric_data[0][i] == 1 else "No"
-                )
-
+                value_label = "Yes" if numeric_data[0][i] == 1 else "No"
                 factors.append({
                     "factor": numeric_names[i] + " = " + value_label,
                     "contribution": float(contribution)
                 })
 
-        factors.sort(
-            key=lambda x: abs(x["contribution"]),
-            reverse=True
-        )
+        factors.sort(key=lambda x: abs(x["contribution"]), reverse=True)
 
         if factors:
-
             left_col, right_col = st.columns(2)
-
             for index, factor in enumerate(factors[:8]):
-
                 positive = factor["contribution"] > 0
-
                 if positive:
-
                     direction = "Pushes toward REAL"
                     color = "#47744B"
                     symbol = "🟢"
-
                 else:
-
                     direction = "Pushes toward FAKE"
                     color = "#9B3345"
                     symbol = "🔴"
 
-                target = (
-                    left_col if index % 2 == 0 else right_col
-                )
-
+                target = left_col if index % 2 == 0 else right_col
                 with target:
-
                     st.markdown(f"""
                     <div class="factor-card">
-
                         <b>{symbol} {factor['factor']}</b>
-
-                        <p style="color:{color}">
-                            {direction}
-                        </p>
-
-                        <small>
-                            Contribution: {factor['contribution']:.5f}
-                        </small>
-
+                        <p style="color:{color}">{direction}</p>
+                        <small>Contribution: {factor['contribution']:.5f}</small>
                     </div>
                     """, unsafe_allow_html=True)
-
         else:
-
             st.info(
                 "The model did not find individual feature contributions large enough to display."
             )
@@ -1232,8 +954,6 @@ else:
             "Negative contribution pushes toward Fake (0). "
             "These are model associations, not proof of authenticity."
         )
-
-    # SAFETY NOTICE
 
     st.warning(
         "IMPORTANT SAFETY NOTICE: This is a machine learning prediction, "
