@@ -10,7 +10,7 @@ from scipy.sparse import hstack, csr_matrix
 
 st.set_page_config(
     page_title="Fake Job Detection AI",
-    page_icon="🛡️",
+    page_icon="🌙",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -33,31 +33,30 @@ except Exception as e:
     st.stop()
 
 # --------------------------------------------------
-# 3. ROYAL ELEGANCE THEME
+# 3. MOONSET THEME
 # --------------------------------------------------
 
 st.markdown("""
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
 
 :root {
-    --burgundy: #70283D;
-    --dark-burgundy: #4D192B;
-    --wine: #913C53;
-    --gold: #B9955B;
-    --champagne: #E9D8B9;
-    --cream: #FAF7F0;
-    --ivory: #FFFDF9;
-    --ink: #33272B;
-    --muted: #81747A;
+    --night: #25223F;
+    --purple: #51466F;
+    --lavender: #9385B5;
+    --peach: #E9A18F;
+    --sunset: #D98279;
+    --cream: #FFF7F0;
+    --ink: #302B40;
+    --muted: #777087;
 }
 
 .stApp {
     background:
-        radial-gradient(ellipse at 5% 0%, #F0E4D5 0%, transparent 35%),
-        radial-gradient(ellipse at 95% 100%, #EEDFE0 0%, transparent 38%),
-        linear-gradient(135deg, #FAF7F0, #F6F0E9);
+        radial-gradient(ellipse at 8% 5%, rgba(147,133,181,.30), transparent 32%),
+        radial-gradient(ellipse at 92% 12%, rgba(233,161,143,.35), transparent 32%),
+        radial-gradient(ellipse at 50% 100%, rgba(217,130,121,.18), transparent 40%),
+        linear-gradient(135deg, #F7F0F5, #FCE9E0 55%, #F1EAF7);
     color: var(--ink);
     font-family: 'DM Sans', sans-serif;
 }
@@ -81,157 +80,187 @@ h1, h2 {
     color: var(--muted) !important;
 }
 
-/* HEADER */
+/* HERO */
 .hero {
     position: relative;
     overflow: hidden;
-    padding: 42px;
+    padding: 43px;
     margin: 10px 0 25px;
-    border-radius: 25px;
+    border-radius: 27px;
     background:
-        radial-gradient(circle at 90% 10%, rgba(185,149,91,.20), transparent 35%),
-        linear-gradient(120deg, #4D192B, #70283D 65%, #913C53);
-    border: 1px solid rgba(185,149,91,.45);
-    box-shadow: 0 18px 40px rgba(77,25,43,.15);
+        radial-gradient(circle at 86% 18%, rgba(255,226,207,.25), transparent 23%),
+        radial-gradient(circle at 90% 15%, rgba(255,255,255,.13), transparent 36%),
+        linear-gradient(120deg, #25223F 0%, #51466F 53%, #A16E86 100%);
+    border: 1px solid rgba(255,225,213,.35);
+    box-shadow: 0 18px 45px rgba(37,34,63,.20);
+}
+
+.hero:after {
+    content: "☾";
+    position: absolute;
+    right: 7%;
+    top: 0;
+    color: rgba(255,244,225,.17);
+    font-size: 145px;
+    line-height: 1.3;
+    pointer-events: none;
 }
 
 .hero h1 {
-    color: #FFF9F0 !important;
+    position: relative;
+    z-index: 1;
+    color: #FFF8F3 !important;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: clamp(32px, 4vw, 49px);
     margin: 13px 0;
     letter-spacing: -.7px;
 }
 
 .hero p {
-    color: #EBDCD9 !important;
+    position: relative;
+    z-index: 1;
+    color: #F0E6F1 !important;
     font-size: 15px;
+    line-height: 1.7;
 }
 
 .eyebrow {
-    color: #E3C58F;
+    position: relative;
+    z-index: 1;
+    color: #F6C9B7;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .hero-badge {
+    position: relative;
+    z-index: 1;
     display: inline-block;
     padding: 7px 13px;
     margin: 12px 5px 0 0;
     border-radius: 30px;
     background: rgba(255,255,255,.10);
-    border: 1px solid rgba(233,216,185,.35);
-    color: #F4E4C7;
+    border: 1px solid rgba(255,230,220,.35);
+    color: #FFF1E9;
     font-size: 11px;
     font-weight: 700;
 }
 
 /* PANELS */
 .panel {
-    background: rgba(255,253,249,.92);
-    border: 1px solid #E9DFD1;
+    background: rgba(255,250,248,.92);
+    border: 1px solid rgba(147,133,181,.25);
     border-radius: 21px;
     padding: 24px;
     margin: 14px 0;
-    box-shadow: 0 9px 25px rgba(77,25,43,.055);
+    box-shadow: 0 9px 27px rgba(49,40,75,.07);
 }
 
 .section-heading {
     font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: 700;
-    color: var(--burgundy);
+    color: #51466F !important;
 }
 
 .section-subtitle {
     font-size: 13px;
-    color: var(--muted);
+    color: #777087 !important;
     margin-top: 5px;
+    line-height: 1.7;
 }
 
 .gold-line {
     width: 52px;
     height: 3px;
-    background: var(--gold);
+    background: linear-gradient(90deg, #9385B5, #E9A18F);
     border-radius: 10px;
     margin: 12px 0;
 }
 
-/* INPUT FIELDS */
+/* INPUTS */
 .stTextInput input,
 .stTextArea textarea {
-    background: #FFFDF9 !important;
-    color: #33272B !important;
-    border: 1px solid #E5D9CA !important;
+    background: #FFFCFA !important;
+    color: #302B40 !important;
+    border: 1px solid #DCD2E3 !important;
     border-radius: 12px !important;
 }
 
 .stTextInput input:focus,
 .stTextArea textarea:focus {
-    border-color: #B9955B !important;
-    box-shadow: 0 0 0 1px #B9955B !important;
+    border-color: #9385B5 !important;
+    box-shadow: 0 0 0 1px #9385B5 !important;
 }
 
 .stTextInput input::placeholder,
 .stTextArea textarea::placeholder {
-    color: #A89A9B !important;
+    color: #A49BAD !important;
+    opacity: 1 !important;
 }
 
 [data-baseweb="select"] > div {
-    background: #FFFDF9 !important;
-    border: 1px solid #E5D9CA !important;
+    background: #FFFCFA !important;
+    border: 1px solid #DCD2E3 !important;
     border-radius: 12px !important;
 }
 
 [data-baseweb="select"] * {
-    color: #33272B !important;
+    color: #302B40 !important;
 }
 
 [data-baseweb="popover"],
 [data-baseweb="menu"] {
-    background: #FFFDF9 !important;
+    background: #FFFCFA !important;
+}
+
+[data-baseweb="menu"] * {
+    color: #302B40 !important;
 }
 
 /* BUTTONS */
 div.stButton > button {
-    background: linear-gradient(110deg, #70283D, #913C53);
-    color: #FFF9F0 !important;
-    border: 1px solid #B9955B;
-    border-radius: 12px;
+    background: linear-gradient(110deg, #51466F, #80658F 65%, #D98279);
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 13px;
     min-height: 48px;
     font-weight: 800;
     transition: all .2s ease;
-    box-shadow: 0 7px 17px rgba(112,40,61,.14);
+    box-shadow: 0 7px 19px rgba(81,70,111,.20);
+}
+
+div.stButton > button p {
+    color: #FFFFFF !important;
 }
 
 div.stButton > button:hover {
-    background: linear-gradient(110deg, #4D192B, #70283D);
-    color: #FFF9F0 !important;
-    border-color: #D6B77E;
+    background: linear-gradient(110deg, #383251, #69567F, #C87575);
+    color: #FFFFFF !important;
     transform: translateY(-2px);
-    box-shadow: 0 11px 22px rgba(112,40,61,.20);
+    box-shadow: 0 11px 24px rgba(81,70,111,.27);
 }
 
 /* RESULT CARDS */
 .result-card {
-    background: #FFFDF9;
-    border: 1px solid #E8DCCB;
+    background: rgba(255,252,250,.95);
+    border: 1px solid #E2D7E6;
     border-radius: 20px;
     padding: 25px;
     min-height: 190px;
-    box-shadow: 0 10px 25px rgba(77,25,43,.06);
+    box-shadow: 0 10px 25px rgba(49,40,75,.07);
 }
 
 .result-card.real {
-    background: linear-gradient(135deg, #F0F5EB, #FFFDF9);
-    border-color: #C7D7BA;
+    background: linear-gradient(135deg, #E8F2EB, #FFFCFA);
+    border-color: #B9D4C2;
 }
 
 .result-card.fake {
-    background: linear-gradient(135deg, #F8E8E8, #FFFDF9);
-    border-color: #E2BFC0;
+    background: linear-gradient(135deg, #F9E5E6, #FFFCFA);
+    border-color: #E7B9C1;
 }
 
 .result-emoji {
@@ -240,57 +269,59 @@ div.stButton > button:hover {
 }
 
 .real-result {
-    color: #47744B;
+    color: #397451;
     font: 800 clamp(25px,3vw,34px) 'Playfair Display', serif;
 }
 
 .fake-result {
-    color: #9B3345;
+    color: #A33E58;
     font: 800 clamp(25px,3vw,34px) 'Playfair Display', serif;
 }
 
 .result-description {
-    color: #75666B !important;
+    color: #625B70 !important;
     font-size: 14px;
     line-height: 1.7;
 }
 
 /* METRICS */
 [data-testid="stMetric"] {
-    background: #FFFDF9;
-    border: 1px solid #E8DCCB;
+    background: rgba(255,252,250,.95);
+    border: 1px solid #E2D7E6;
     border-radius: 17px;
     padding: 17px;
-    box-shadow: 0 7px 20px rgba(77,25,43,.04);
+    box-shadow: 0 7px 20px rgba(49,40,75,.05);
 }
 
-[data-testid="stMetricLabel"] {
-    color: #81747A !important;
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] * {
+    color: #777087 !important;
 }
 
-[data-testid="stMetricValue"] {
-    color: #70283D !important;
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] * {
+    color: #51466F !important;
     font-family: 'Playfair Display', serif;
 }
 
 /* PROGRESS */
 .stProgress > div > div > div {
-    background: linear-gradient(90deg, #70283D, #B9955B);
+    background: linear-gradient(90deg, #9385B5, #E9A18F);
     border-radius: 20px;
 }
 
 /* EXPLANATION */
 .factor-card {
-    background: #FFFDF9;
-    border: 1px solid #E9DFD1;
-    border-left: 4px solid #B9955B;
+    background: #FFFCFA;
+    border: 1px solid #E2D7E6;
+    border-left: 4px solid #D98279;
     border-radius: 13px;
     padding: 16px;
     margin-bottom: 12px;
 }
 
 .factor-card b {
-    color: #70283D;
+    color: #51466F;
 }
 
 .factor-card p {
@@ -298,13 +329,18 @@ div.stButton > button:hover {
 }
 
 .factor-card small {
-    color: #81747A;
+    color: #777087;
 }
 
 [data-testid="stExpander"] {
-    background: #FFFDF9;
-    border: 1px solid #E9DFD1;
+    background: rgba(255,252,250,.92);
+    border: 1px solid #DED4E5;
     border-radius: 15px;
+}
+
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary span {
+    color: #51466F !important;
 }
 
 /* ALERTS */
@@ -315,23 +351,15 @@ div.stButton > button:hover {
 /* FOOTER */
 .footer {
     text-align: center;
-    color: #8B7C7F;
+    color: #777087;
     font-size: 12px;
     line-height: 2;
     padding: 22px 5px;
 }
 
 .footer strong {
-    color: #70283D;
+    color: #51466F;
     letter-spacing: 2px;
-}
-
-/* SAMPLE LABEL */
-.sample-label {
-    color: #70283D;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 1.5px;
 }
 
 /* MOBILE */
@@ -342,6 +370,10 @@ div.stButton > button:hover {
     .hero {
         padding: 23px;
     }
+    .hero:after {
+        font-size: 95px;
+        right: 4%;
+    }
     .panel {
         padding: 16px;
     }
@@ -349,10 +381,8 @@ div.stButton > button:hover {
         padding: 19px;
     }
 }
-
 </style>
 """, unsafe_allow_html=True)
-
 
 # --------------------------------------------------
 # 4. SAMPLE JOBS
@@ -511,7 +541,6 @@ samples = {
     }
 }
 
-
 # --------------------------------------------------
 # 5. SESSION STATE
 # --------------------------------------------------
@@ -597,7 +626,7 @@ def run_prediction():
 def footer():
     st.markdown("""
     <div class="footer">
-        <strong>ROYAL ELEGANCE • FAKE JOB DETECTION AI</strong><br>
+        <strong>MOONSET • FAKE JOB DETECTION AI</strong><br>
         Powered by Python • Streamlit • TF-IDF • Logistic Regression<br>
         Intelligent Recruitment Safety System
     </div>
@@ -612,7 +641,7 @@ def header(step, title, subtitle):
     st.markdown(f"""
     <div class="hero">
         <div class="eyebrow">
-            🛡️ ROYAL ELEGANCE • RECRUITMENT SECURITY • {step}
+            ☾ MOONSET • RECRUITMENT SECURITY • {step}
         </div>
         <h1>{title}</h1>
         <p>{subtitle}</p>
@@ -736,7 +765,7 @@ if st.session_state.page == "input":
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🛡️  Analyse Job Posting", use_container_width=True):
+    if st.button("🌙  Analyse Job Posting", use_container_width=True):
         if (
             not st.session_state.title.strip()
             or not st.session_state.description.strip()
@@ -928,11 +957,11 @@ else:
                 positive = factor["contribution"] > 0
                 if positive:
                     direction = "Pushes toward REAL"
-                    color = "#47744B"
+                    color = "#397451"
                     symbol = "🟢"
                 else:
                     direction = "Pushes toward FAKE"
-                    color = "#9B3345"
+                    color = "#A33E58"
                     symbol = "🔴"
 
                 target = left_col if index % 2 == 0 else right_col
