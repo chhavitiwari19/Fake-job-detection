@@ -33,7 +33,7 @@ except Exception as e:
     st.stop()
 
 # --------------------------------------------------
-# 3. MOONSET THEME
+# 3. CELESTIAL TWILIGHT THEME
 # --------------------------------------------------
 
 st.markdown("""
@@ -343,10 +343,26 @@ div.stButton > button:hover {
     color: #51466F !important;
 }
 
-/* ALERTS */
-.stAlert {
-    border-radius: 14px;
+
+/* LIGHT, READABLE ALERTS */
+[data-testid="stAlert"] {
+    background: #FFF8F3 !important;
+    color: #302B40 !important;
+    border: 1px solid #E7D5D8 !important;
+    border-radius: 14px !important;
 }
+
+[data-testid="stAlert"] *,
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] span,
+[data-testid="stAlert"] div {
+    color: #302B40 !important;
+}
+
+[data-testid="stAlert"] svg {
+    fill: currentColor;
+}
+
 
 /* FOOTER */
 .footer {
@@ -626,7 +642,7 @@ def run_prediction():
 def footer():
     st.markdown("""
     <div class="footer">
-        <strong>MOONSET • FAKE JOB DETECTION AI</strong><br>
+        <strong>FAKE JOB DETECTION AI</strong><br>
         Powered by Python • Streamlit • TF-IDF • Logistic Regression<br>
         Intelligent Recruitment Safety System
     </div>
@@ -641,7 +657,7 @@ def header(step, title, subtitle):
     st.markdown(f"""
     <div class="hero">
         <div class="eyebrow">
-            ☾ MOONSET • RECRUITMENT SECURITY • {step}
+            ☾ RECRUITMENT SECURITY • {step}
         </div>
         <h1>{title}</h1>
         <p>{subtitle}</p>
